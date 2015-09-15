@@ -1,0 +1,13 @@
+language: php
+php:
+  - 5.6
+env:
+  global:
+    - GIT_NAME: "'Couscous auto deploy'"
+    - GIT_EMAIL: d.negrier@thecodingmachine.com
+    - GH_REF: github.com/thecodingmachine/best-practices
+    - secure: ...
+before_script:
+  - composer install --no-progress
+script:
+  - vendor/bin/couscous travis-auto-deploy
