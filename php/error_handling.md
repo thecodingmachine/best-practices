@@ -1,6 +1,7 @@
 ---
 title: Error handling
 subTitle: PHP Best practices
+currentMenu: php-exceptions
 ---
 
 ## Using Exceptions

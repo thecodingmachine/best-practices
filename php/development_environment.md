@@ -1,6 +1,7 @@
 ---
 title: Development environment
 subTitle: PHP Best practices
+currentMenu: php-dev-env
 ---
 
 This series of tips is dedicated to building an efficient development environment for PHP.

@@ -238,3 +238,31 @@ section.services {
 .origa-expertise {
   background-position-y: 100% !important;
 }
+
+nav > ul > li > ul {
+  padding-left: 20px;
+  & > li:before {
+    content: '\f054'; /* FontAwesome char code inside the '' */
+    font-family: FontAwesome; /* FontAwesome or whatever */
+    display: inline-block;
+    width: 1.2em; /* same as padding-left set on li */
+    margin-left: -1.2em; /* same as padding-left set on li */
+  }​
+
+  & > li {
+    list-style-type: none;
+    padding-left: 1.2em;
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+}
+
+p.fork-and-edit {
+  background: rgba(0, 0, 0, 0) url("../img/github.gif") no-repeat scroll 0 0;
+  font-style: italic;
+  height: 40px;
+  margin: 40px auto 0;
+  max-width: 580px;
+  padding-left: 40px;
+  padding-top: 5px;
+}

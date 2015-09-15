@@ -1,6 +1,7 @@
 ---
 title: Defensive programming
 subTitle: PHP Best practices
+currentMenu: php-defensive-programming
 ---
 
 This series of tips is dedicated to strengthening your code.
@@ -176,4 +177,5 @@ same name as the constant. So instead of doing `StatusEnum::ACTIVE`, you write `
 static method will return an instance of the `StatusEnum` class that represents the constant. Therefore, you can
 type hint on it.
 
-So there is no way that you can call the `doStuff` method without passing a valid status!
+Your code is safer and simpler. Now, no one can call the `doStuff` method without passing a valid status, so you don't need
+to check that in your method!

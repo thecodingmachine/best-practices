@@ -80,7 +80,8 @@ gulp.task('js', function() {
         'template/js/scripts.js',
         'template/js/libs/bootstrap.min.js',
         'template/js/libs/FitVids.js-master/jquery.fitvids.js',
-        'template/js/fitvid.js'
+        'template/js/fitvid.js',
+        'template/js/inner-plan.js'
     ];
 
     var stream = gulp
