@@ -1,4 +1,5 @@
-/.couscous/
+.couscous/
 node_modules/
 template/components/
 template/dist/
+vendor/
