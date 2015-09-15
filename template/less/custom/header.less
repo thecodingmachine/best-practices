@@ -2,6 +2,7 @@
 .red {
 	#header {
 		background: @bright-red;
+	    transition: background 0.2s;
 	}
 }
 .blue {
@@ -29,7 +30,15 @@
 		width: 100%;
 	}
 	&.fixed {
-		background: fade(@white, 95%) !important;
+	    transition: background 0.2s;
+
+	  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+84,ffffff+100 */
+	  background: #ffffff; /* Old browsers */
+	  background: linear-gradient(to bottom,  @white 0%, fade(@white, 95%) 50%,fade(@white, 85%) 100%); /* W3C */
+	  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='fade(@white, 90%)',GradientType=0 ); /* IE6-9 */
+
+
+	  /*	background: fade(@white, 95%) !important;*/
 		.navbar-nav {
 			li {
 				a {
