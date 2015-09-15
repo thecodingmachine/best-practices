@@ -1,5 +1,6 @@
 template:
     directory: template
+    index: index.md
 
 exclude:
     - vendor
