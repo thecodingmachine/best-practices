@@ -190,7 +190,7 @@
                                                 Development environment
                                             </a>
                                         </li>
-                                                                                                                                                <li class=" visible-xs-block">
+                                                                                                                                                <li class="active visible-xs-block">
                                             <a href="http://bestpractices.thecodingmachine.com/php/defensive_programming.html">
                                                 Defensive programming
                                             </a>
@@ -226,7 +226,7 @@
                                                         Development environment
                                                     </a>
                                                 </li>
-                                                                                                                                                                                <li class="">
+                                                                                                                                                                                <li class="active">
                                                     <a href="http://bestpractices.thecodingmachine.com/php/defensive_programming.html">
                                                         Defensive programming
                                                     </a>
@@ -373,7 +373,13 @@ doStuff(StatusEnum::ACTIVE());</code></pre>
 same name as the constant. So instead of doing <code>StatusEnum::ACTIVE</code>, you write <code>StatusEnum::ACTIVE()</code>. The <code>ACTIVE()</code>
 static method will return an instance of the <code>StatusEnum</code> class that represents the constant. Therefore, you can
 type hint on it.</p>
-<p>So there is no way that you can call the <code>doStuff</code> method without passing a valid status!</p>
+<p>Your code is safer and simpler. Now, no one can call the <code>doStuff</code> method without passing a valid status, so you don't need
+to check that in your method!</p>
+
+                    <p class="fork-and-edit">
+                    Found a typo? Something is wrong in this documentation? Just
+                    <a href="https://github.com/thecodingmachine/best-practices/blob/master/php/defensive_programming.md">fork and edit it</a>!
+                    </p>
                 </div>
             </div>
         </div>
