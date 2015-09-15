@@ -1,0 +1,347 @@
+<!doctype html>
+<!--[if lt IE 7]><html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Development environment | TheCodingMachine Best practices</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/dist/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/dist/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/dist/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/dist/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/dist/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/dist/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/dist/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/dist/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/dist/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/dist/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/dist/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/dist/img/favicon/favicon-16x16.png">
+
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300,500" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora" rel="stylesheet" type="text/css">
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/dist/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="msapplication-TileColor" content="#f01d4f">
+    <meta name="msapplication-TileImage" content="http://www.thecodingmachine.com/wp-content/themes/thecodingmachine/library/images/win8-tile-icon.png">
+
+    <link rel="stylesheet" href="/components/highlightjs/styles/github.css" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="TheCodingMachine Best practices activity feed" />
+    <style>
+        /** quick fix because bootstrap <pre> has a background-color. */
+        pre code { background-color: inherit; }
+    </style>
+                
+
+    <link rel='stylesheet' id='font-awesome-css'  href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='google-roboto-css'  href='//fonts.googleapis.com/css?family=Roboto%3A100%2C400%2C300%2C400italic%2C500%2C700' type='text/css' media='all' />
+    <link rel='stylesheet' id='style-css'  href='/dist/css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='hljstheme-css'  href='/components/highlightjs/styles/darkula.css' type='text/css' media='all' />
+    <!--[if lt IE 9]>
+    <link rel='stylesheet' id='ie-only-css'  href='/dist/css/ie.css' type='text/css' media='all' />
+    <![endif]-->
+    <script type='text/javascript' src='/components/jquery/dist/jquery.js'></script>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js'></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-10196481-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script type='text/javascript' src='/dist/js/template/script.js'></script>
+    <script type='text/javascript' src='/components/highlightjs/highlight.pack.min.js'></script>
+
+    <script type="text/javascript">
+        $ = jQuery;
+        $( document ).ready(function() {
+            $('.scroll-contact').on('click',function () {
+                var contact = $('.b-container');
+                $('html,body').animate({scrollTop: contact.offset().top}, 1500);
+            });
+
+            var wi = $(window).width();
+
+            if(wi <= 980){
+                $('#header').removeClass('absolute');
+            }
+
+            $(window).scroll(function() {
+                if($(window).scrollTop() > 0) {
+                    $('#header').addClass('fixed');
+                }else{
+                    $('#header').removeClass('fixed');
+                }
+            });
+
+            // browser window scroll (in pixels) after which the "back to top" link is shown
+            var offset = 300,
+            //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+                    offset_opacity = 1200,
+            //duration of the top scrolling animation (in ms)
+                    scroll_top_duration = 700,
+            //grab the "back to top" link
+                    $back_to_top = $('.cd-top');
+
+            //hide or show the "back to top" link
+            $(window).scroll(function(){
+                ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+                if( $(this).scrollTop() > offset_opacity ) {
+                    $back_to_top.addClass('cd-fade-out');
+                }
+            });
+
+            //smooth scroll to top
+            $back_to_top.on('click', function(event){
+                event.preventDefault();
+                $('body,html').animate({
+                            scrollTop: 0 ,
+                        }, scroll_top_duration
+                );
+            });
+        });
+    </script>
+    <style>pre.hljs {padding: 5px;}
+    pre.hljs code {}</style>
+    <script type="text/javascript">
+        (function($, window) {
+            var init_fn_flag = false;
+            var init_fn = (function() {
+                if (init_fn_flag)
+                    return;
+
+                init_fn_flag = true;
+
+                hljs.configure({"tabReplace":"    "});
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+
+            });
+
+            $(document).ready(init_fn);
+            $(window).on("load", init_fn);
+        })(jQuery, window);
+    </script>
+    <script>
+        jQuery(function() {
+            var globalFunction = new GlobalFunction();
+            globalFunction.menuInitialize();
+        });
+    </script>
+</head>
+<body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.3&appId=1549118041971618";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="wrapper" class="red">
+
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <strong class="logo">
+                        <a href="http://www.thecodingmachine.com/">
+                            <img class="logo-white" src="/dist/img/logo-final_blanc.png" alt="TheCodingMachine">
+                            <img class="logo-black" src="/dist/img/logo-final_noir.png" alt="TheCodingMachine">
+                        </a>
+                    </strong>
+                </div>
+                <!--<div class="col-md-4 col-md-push-0 col-sm-3 col-sm-push-9 col-xs-12">
+                    <h2>Best practices</h2>
+                </div>-->
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <nav class="navbar navbar-default">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/">ABOUT</a></li>
+                                                                                                                                                                                <li class=" visible-xs-block">
+                                            <a href="/php/development_environment.html">
+                                                Development environment
+                                            </a>
+                                        </li>
+                                                                                                                                                <li class=" visible-xs-block">
+                                            <a href="/php/defensive_programming.html">
+                                                Defensive programming
+                                            </a>
+                                        </li>
+                                                                                                                                                <li class=" visible-xs-block">
+                                            <a href="/php/error_handling.html">
+                                                Error handling
+                                            </a>
+                                        </li>
+                                                                                                    <li><a href="http://www.thecodingmachine.com/">TheCodingMachine</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main id="main" role="main">
+        <div class="container">
+            <div class="row">
+                <aside id="sidebar" class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
+                    <div class="sidebar">
+                        <div class="sidebar-holder">
+                            
+                                <nav id="sidebar" class="" role="navigation">
+
+                                    <ul class="nav nav-pills nav-stacked">
+                                                                                                                                    <li>
+                                                    <h4>PHP</h4>
+                                                </li>
+                                                                                                                                                                                <li class="">
+                                                    <a href="/php/development_environment.html">
+                                                        Development environment
+                                                    </a>
+                                                </li>
+                                                                                                                                                                                <li class="">
+                                                    <a href="/php/defensive_programming.html">
+                                                        Defensive programming
+                                                    </a>
+                                                </li>
+                                                                                                                                                                                <li class="">
+                                                    <a href="/php/error_handling.html">
+                                                        Error handling
+                                                    </a>
+                                                </li>
+                                                                                                                        </ul>
+
+                                </nav>
+
+                            
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 content">
+                    <h1>Development environment <small>PHP Best practices</small></h1>
+                    <p>This series of tips is dedicated to building an efficient development environment for PHP.
+Do not underestimate the importance of a fully set up environment. This will help you be more efficient,
+and in the end, you will develop faster and with less errors.</p>
+<h2 id="enable-error-reporting">Enable error reporting</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule">Rule</h3>
+<div class="alert alert-info">Configure your <code>php.ini</code> for maximum error verbosity!</div>
+<p>Please ensure that you have the following settings on your development environment:</p>
+<pre><code class="language-ini">error_reporting = E_ALL
+display_errors = On</code></pre>
+<p>Also, please install <a href="http://xdebug.org/">Xdebug</a>.</p>
+<h3 id="explanation">Explanation</h3>
+<p>You want each and every error to be <strong>directly displayed on screen</strong>. If it goes to the logs, there is a chance you will
+never notice it. Also, you want PHP to be <strong>as strict as possible</strong> because this will help you diagnose potential bugs.</p>
+<p>Finally, installing Xdebug is really important because it will allow you to have a <strong>stack-trace</strong> for each error
+that is triggered (by default, PHP only displays stack-traces for exceptions, not errors)</p>
+<h2 id="install-an-ide-a-real-one">Install an IDE (a real one!)</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-1">Rule</h3>
+<div class="alert alert-info">Install a real PHP IDE. One with code completion and debugging support</div>
+<h3 id="explanation-1">Explanation</h3>
+<p>No, your text editor is not enough. Even if it comes with all bell and whistles (I'm looking at you Notepad++ and
+Sublime text).</p>
+<p>You absolutely need these 2 features to be efficient:</p>
+<ul>
+<li><strong>Auto-completion</strong>: here we are not talking about autocompleting core PHP functions. We want an autocomplete that
+analyzes your code and proposes methods available in your objects, based on the context.</li>
+<li><strong>Debugging support</strong>: because a debugger is way more powerful than putting <code>var_dump</code>s in your code!</li>
+</ul>
+<p>Looking for such an IDE? At the time of writing, here are 3 IDEs that stand out:</p>
+<ul>
+<li><a href="http://eclipse.org/">Eclipse</a>, with PDT plugin</li>
+<li><a href="https://netbeans.org/">Netbeans</a></li>
+<li><a href="https://www.jetbrains.com/phpstorm/">PHPStorm</a>, probably the best PHP IDE out there, but unlike Eclipse and NetBeans,
+it is not free.</li>
+</ul>
+<h2 id="setup-a-debugger">Setup a debugger</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-2">Rule</h3>
+<div class="alert alert-info">Install and configure XDebug</div>
+<h3 id="explanation-2">Explanation</h3>
+<p>Installing and configuring XDebug can be challenging when you've never done it before, but it is worth 10x the time you'll
+spend configuring it.</p>
+<div class="alert alert-danger">Do not start your project if you don't have a working debugger first!</div>
+                </div>
+            </div>
+        </div>
+        <div class="img-block">
+            <img src="/dist/img/image13.jpg" alt="image description">
+        </div>
+    </main>
+
+
+    <a href="#0" class="cd-top"></a>
+</div> <!--  end wrapper -->
+<div class="b-container">
+    <div class="container">
+        <aside class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <strong class="logo"><a href="#"><img src="/dist/img/logo.svg" alt="TheCodingMachine"></a></strong>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                        <address>
+                            <span class="phone">Phone: <a href="tel:+33171183973">+33 1 71 18 39 73</a></span>
+                            <span><a href="mailto:contact@thecodingmachine.com">contact@thecodingmachine.com</a></span>
+                            <span class="address">4, Rue de la Michodière<br>	PARIS - 75002<br> France</span>
+                        </address>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 col-lg-push-4 col-md-push-0 social-area">
+                        <a href="http://www.thecodingmachine.com/entreprise#rejoindre"><strong class="title">We are hiring!</strong></a>
+                        <div class="row" style="margin-top: 45px;">
+                            <div class="col-xs-12">
+                                <ul class="list-inline social-networks">
+                                    <li><a href="https://www.facebook.com/the.coding.machine" target="_blank"><i class="fa fa-facebook fa-lg"></i></a></li>
+                                    <li><a href="https://twitter.com/coding_machine" target="_blank"><i class="fa fa-twitter fa-lg"></i></span></a></li>
+                                    <li><a href="https://www.linkedin.com/company/the-coding-machine" target="_blank"><i class="fa fa-linkedin fa-lg"></i></span></a></li>
+                                    <!-- 											<li><a href="https://plus.google.com/104076796617273378986/posts" ><i class="fa fa-google-plus fa-lg"></i></span></a></li> -->
+                                </ul>
+                                <div class="fb-likes"><div class="fb-like" data-href="https://www.facebook.com/the.coding.machine" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <footer class="row" id="footer">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-0">
+                <span class="copyright">&copy; 2015 <a href="http://www.thecodingmachine.com/">TheCodingMachine</a> - All Rights Reserved</span>
+                <span class="design-by">Design by <a href="http://www.allaboutdavid.fr/" target="_blank">All about david</a><br/>
+                Powered by <a href="http://couscous.io/">Couscous</a></span>
+            </div>
+        </footer>
+    </div>
+</div>
+</body>
+</html>

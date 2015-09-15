@@ -1,0 +1,482 @@
+<!doctype html>
+<!--[if lt IE 7]><html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Error handling | TheCodingMachine Best practices</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/dist/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/dist/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/dist/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/dist/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/dist/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/dist/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/dist/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/dist/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/dist/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/dist/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/dist/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/dist/img/favicon/favicon-16x16.png">
+
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300,500" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora" rel="stylesheet" type="text/css">
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/dist/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="msapplication-TileColor" content="#f01d4f">
+    <meta name="msapplication-TileImage" content="http://www.thecodingmachine.com/wp-content/themes/thecodingmachine/library/images/win8-tile-icon.png">
+
+    <link rel="stylesheet" href="/components/highlightjs/styles/github.css" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="TheCodingMachine Best practices activity feed" />
+    <style>
+        /** quick fix because bootstrap <pre> has a background-color. */
+        pre code { background-color: inherit; }
+    </style>
+                
+
+    <link rel='stylesheet' id='font-awesome-css'  href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='google-roboto-css'  href='//fonts.googleapis.com/css?family=Roboto%3A100%2C400%2C300%2C400italic%2C500%2C700' type='text/css' media='all' />
+    <link rel='stylesheet' id='style-css'  href='/dist/css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='hljstheme-css'  href='/components/highlightjs/styles/darkula.css' type='text/css' media='all' />
+    <!--[if lt IE 9]>
+    <link rel='stylesheet' id='ie-only-css'  href='/dist/css/ie.css' type='text/css' media='all' />
+    <![endif]-->
+    <script type='text/javascript' src='/components/jquery/dist/jquery.js'></script>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js'></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-10196481-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script type='text/javascript' src='/dist/js/template/script.js'></script>
+    <script type='text/javascript' src='/components/highlightjs/highlight.pack.min.js'></script>
+
+    <script type="text/javascript">
+        $ = jQuery;
+        $( document ).ready(function() {
+            $('.scroll-contact').on('click',function () {
+                var contact = $('.b-container');
+                $('html,body').animate({scrollTop: contact.offset().top}, 1500);
+            });
+
+            var wi = $(window).width();
+
+            if(wi <= 980){
+                $('#header').removeClass('absolute');
+            }
+
+            $(window).scroll(function() {
+                if($(window).scrollTop() > 0) {
+                    $('#header').addClass('fixed');
+                }else{
+                    $('#header').removeClass('fixed');
+                }
+            });
+
+            // browser window scroll (in pixels) after which the "back to top" link is shown
+            var offset = 300,
+            //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+                    offset_opacity = 1200,
+            //duration of the top scrolling animation (in ms)
+                    scroll_top_duration = 700,
+            //grab the "back to top" link
+                    $back_to_top = $('.cd-top');
+
+            //hide or show the "back to top" link
+            $(window).scroll(function(){
+                ( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+                if( $(this).scrollTop() > offset_opacity ) {
+                    $back_to_top.addClass('cd-fade-out');
+                }
+            });
+
+            //smooth scroll to top
+            $back_to_top.on('click', function(event){
+                event.preventDefault();
+                $('body,html').animate({
+                            scrollTop: 0 ,
+                        }, scroll_top_duration
+                );
+            });
+        });
+    </script>
+    <style>pre.hljs {padding: 5px;}
+    pre.hljs code {}</style>
+    <script type="text/javascript">
+        (function($, window) {
+            var init_fn_flag = false;
+            var init_fn = (function() {
+                if (init_fn_flag)
+                    return;
+
+                init_fn_flag = true;
+
+                hljs.configure({"tabReplace":"    "});
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+
+            });
+
+            $(document).ready(init_fn);
+            $(window).on("load", init_fn);
+        })(jQuery, window);
+    </script>
+    <script>
+        jQuery(function() {
+            var globalFunction = new GlobalFunction();
+            globalFunction.menuInitialize();
+        });
+    </script>
+</head>
+<body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.3&appId=1549118041971618";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div id="wrapper" class="red">
+
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <strong class="logo">
+                        <a href="http://www.thecodingmachine.com/">
+                            <img class="logo-white" src="/dist/img/logo-final_blanc.png" alt="TheCodingMachine">
+                            <img class="logo-black" src="/dist/img/logo-final_noir.png" alt="TheCodingMachine">
+                        </a>
+                    </strong>
+                </div>
+                <!--<div class="col-md-4 col-md-push-0 col-sm-3 col-sm-push-9 col-xs-12">
+                    <h2>Best practices</h2>
+                </div>-->
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <nav class="navbar navbar-default">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/">ABOUT</a></li>
+                                                                                                                                                                                <li class=" visible-xs-block">
+                                            <a href="/php/development_environment.html">
+                                                Development environment
+                                            </a>
+                                        </li>
+                                                                                                                                                <li class=" visible-xs-block">
+                                            <a href="/php/defensive_programming.html">
+                                                Defensive programming
+                                            </a>
+                                        </li>
+                                                                                                                                                <li class=" visible-xs-block">
+                                            <a href="/php/error_handling.html">
+                                                Error handling
+                                            </a>
+                                        </li>
+                                                                                                    <li><a href="http://www.thecodingmachine.com/">TheCodingMachine</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main id="main" role="main">
+        <div class="container">
+            <div class="row">
+                <aside id="sidebar" class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
+                    <div class="sidebar">
+                        <div class="sidebar-holder">
+                            
+                                <nav id="sidebar" class="" role="navigation">
+
+                                    <ul class="nav nav-pills nav-stacked">
+                                                                                                                                    <li>
+                                                    <h4>PHP</h4>
+                                                </li>
+                                                                                                                                                                                <li class="">
+                                                    <a href="/php/development_environment.html">
+                                                        Development environment
+                                                    </a>
+                                                </li>
+                                                                                                                                                                                <li class="">
+                                                    <a href="/php/defensive_programming.html">
+                                                        Defensive programming
+                                                    </a>
+                                                </li>
+                                                                                                                                                                                <li class="">
+                                                    <a href="/php/error_handling.html">
+                                                        Error handling
+                                                    </a>
+                                                </li>
+                                                                                                                        </ul>
+
+                                </nav>
+
+                            
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 content">
+                    <h1>Error handling <small>PHP Best practices</small></h1>
+                    <h2 id="using-exceptions">Using Exceptions</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule">Rule</h3>
+<div class="alert alert-info">When writing a function, you should throw exceptions for error management instead of returning a boolean.</div>
+<h3 id="explanation">Explanation</h3>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">/**
+ * @return bool
+ */
+function writeDateInFile() {
+    $result = file_put_contents("date", date("Y-m-d"));
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}</code></pre>
+<p>Why is this bad? Because you are relying on the developer using your function to actively check the return value
+and see if everything went all right.</p>
+<pre><code class="language-php">// You assume the developer using your function will write:
+$result = writeDateInFile();
+if ($result) {
+    // Do stuff
+} else {
+    // Do something to actually manage the error 
+}</code></pre>
+<p>But developers are <strong>lazy</strong>. They tend to forget to add required checks. Or they don't have time and they skip
+error handling. So instead of returning a status code, your function should not return anything <strong>but</strong> it should
+<strong>throw an exception</strong> in case something goes wrong.</p>
+<div class="alert alert-success">So your code should look like this:</div>
+<pre><code class="language-php">/**
+ * @return bool
+ */
+function writeDateInFile() {
+    $result = file_put_contents("date", date("Y-m-d"));
+    if (!$result) {
+        throw new FileWriteException("There was a problem writing file 'date'");
+    }
+}</code></pre>
+<h2 id="subtyping-exceptions">Subtyping exceptions</h2>
+<p><span class="label label-warning pull-right">Intermediate</span></p>
+<h3 id="rule-1">Rule</h3>
+<div class="alert alert-info">You should never throw the `Exception` class directly. Instead, you should consider 
+<strong>extending</strong> the <code>Exception</code> class or using one of the available sub-classes.</div>
+<h3 id="explanation-1">Explanation</h3>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">function writeDateInFile() {
+    $data = $this-&gt;dao-&gt;getSomeData();
+    $result = file_put_contents("date", json_encode($data));
+    if (!$result) {
+        throw new \Exception("Throw some generic exception");
+    }
+}</code></pre>
+<p>Why is this bad? Because you are preventing the developer to catch specific problems.
+Look at the code above. The <code>getSomeData</code> method could also throw an exception that the developer using
+your function does not want to catch.</p>
+<div class="alert alert-success">So instead, you should consider creating your own exception or using an exception for the SPL library:</div>
+<pre><code class="language-php">namespace My\Namespace;
+
+class FileWritingException extends \Exception {
+}</code></pre>
+<p>Please note that your class does not need to contain any code. It just needs to extend the exception class.</p>
+<p>Now, your code looks like this:</p>
+<pre><code class="language-php">function writeDataInFile() {
+    $data = $this-&gt;dao-&gt;getSomeData();
+    $result = file_put_contents("date", json_encode($data));
+    if (!$result) {
+        throw new FileWritingException("Throw my specific exception");
+    }
+}</code></pre>
+<p>and the developer can catch this specific exception if he wants to:</p>
+<pre><code class="language-php">try {
+    $this-&gt;writeDataInFile();
+} catch (FileWritingException $e) {
+    // Do some specific stuff if we have problems with disk writing. 
+}</code></pre>
+<h2 id="fail-early-fail-loud">Fail early, fail loud</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-2">Rule</h3>
+<div class="alert alert-info"><strong>Do not catch exceptions!</strong> If something unexpected happens, your code should 
+fail loudly (with a big error message) rather than trying to hide what is going wrong.</div>
+<h3 id="explanation-2">Explanation</h3>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">function doClevelStuff() {
+    try {
+        $results = $this-&gt;db-&gt;makeRequest("SELECT ...[insert complex SQL here] ");
+        // ... Do stuff
+    } catch (DBException $e) {
+        $this-&gt;log-&gt;error($e-&gt;getMessage());
+    }
+}</code></pre>
+<p>This code is <em>clearly evil</em>. So you have this big complex SQL request, and if it fails (because there is a parse error
+in the SQL), the code is catching the error, logging it... and that's it!</p>
+<p>How long will it take before someone notices that the logs are full of SQL errors?
+An SQL error is not a runtime error, it is a design error. So if there is one, there is a bug. <strong>And you don't catch bugs.
+Never.</strong></p>
+<div class="alert alert-success">Instead, the correct code is:</div>
+<pre><code class="language-php">function doClevelStuff() {
+    $results = $this-&gt;db-&gt;makeRequest("SELECT ...[insert complex SQL here] ");
+    // ... Do stuff
+}</code></pre>
+<p>See how this is easier? If an exception is thrown because there is a problem in the SQL, it will bubble up. It will
+probably be caught by your MVC framework that will display a nice HTTP 500 page, with a nice stacktrace.
+If your framework does not provide you with a nice error page, consider switching to another framework. Or use
+<a href="http://filp.github.io/whoops/">Whoops, a nice error reporting library</a>.</p>
+<p>In general, there are very few cases where you will want to catch an exception. This is because exceptions are thrown
+when someting goes seriously wrong and generally, there is nothing you can do to fix it:</p>
+<ul>
+<li>Your database is not reachable? There is usually nothing your program can do to fix this</li>
+<li>Your application does not have rights to write in a directory? There is usually nothing your program can do to fix this</li>
+<li>Your hard disk is full? There is usually nothing your program can do to fix this</li>
+<li>You have a SQL error? There is usually nothing your program can do to fix this</li>
+</ul>
+<p>See? Most exceptions are meant to bubble up, so do not catch them!</p>
+<p>So unless you are writing an error handler, or retrowing the exception, you should always consider carefully what
+exceptions you want to catch and never try to catch the <code>Exception</code> class.</p>
+<div class="alert alert-danger">Bad:</div>
+<pre><code class="language-php">try {
+    // ...
+} catch (Exception $e) {
+    // NO! Catching the Exception root class is evil unless you are writing an error handler.
+}</code></pre>
+<div class="alert alert-success">Good:</div>
+<pre><code class="language-php">try {
+    // ...
+} catch (Exception $e) {
+    // Do some stuff...
+    // This is OK, because the exception is rethrown
+    throw $e;
+}</code></pre>
+<h2 id="always-log-exceptions-with-the-stacktrace">Always log exceptions with the stacktrace</h2>
+<p><span class="label label-warning pull-right">Intermediate</span></p>
+<h3 id="rule-3">Rule</h3>
+<p>Ok, so you read the rule just above, and you still want to catch that exception...</p>
+<div class="alert alert-info">When logging exceptions, please log the whole stack-trace, not only the message.</div>
+<h3 id="explanation-3">Explanation</h3>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">try {
+    // ...
+} catch (MyException $e) {
+    // This is bad, you just lost the stacktrace!
+    $this-&gt;logger-&gt;error($e-&gt;getMessage());
+}</code></pre>
+<div class="alert alert-success">Instead, the correct code is:</div>
+<pre><code class="language-php">try {
+    // ...
+} catch (MyException $e) {
+    // This is good, the stacktrace is logged.
+    $this-&gt;logger-&gt;error($e-&gt;getMessage(), [ 'exception' =&gt; $e ]);
+}</code></pre>
+<p>You are using a <a href="http://www.php-fig.org/psr/psr-3/">PSR-3 compatible logger, right?</a> The PSR-3 states that you can pass an exception to the logger in the
+<code>exception</code> key of the context array. By doing so, your logger will be allowed to log the stacktrace. If an exception
+is ever thrown, you will have the complete stack-trace and you will know where in the code it was triggered.</p>
+<h2 id="wrapping-an-exception-do-not-lose-the-previous-exception">Wrapping an exception? Do not lose the previous exception!</h2>
+<p><span class="label label-danger pull-right">Pro</span></p>
+<h3 id="rule-4">Rule</h3>
+<div class="alert alert-info">When wrapping exceptions, please pass on the root exception.</div>
+<h3 id="explanation-4">Explanation</h3>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">try {
+    // ...
+} catch (DatabaseException $e) {
+    // This is bad, you just lost the reason why the exception happened.
+    throw new MyServiceException("Something wrong happened with the database");
+}</code></pre>
+<p>The code above is evil because you completely lost any knowledge of the <code>DatabaseException</code> that was triggered.
+What was the message? Which line of code did trigger this exception? You don't know anymore. The only thing you know
+is that you have a new <code>MyServiceException</code> that is not very helpful.</p>
+<div class="alert alert-success">Instead, the correct code is:</div>
+<pre><code class="language-php">try {
+    // ...
+} catch (DatabaseException $e) {
+    // This is good. The exception is passed as 3rd parameter of the exception constructor.
+    // Now, your MyServiceException embeds the DatabaseException and both stack-traces will be displayed.
+    throw new MyServiceException("Something wrong happened with the database", 0, $e);
+}</code></pre>
+<p>This is good. The third parameter to the <code>Exception</code> constructor is another exception (the one that triggered this
+exception). Most loggers and error reporting tools will show you both exceptions, so you will have a very detailed
+view of what is going wrong.</p>
+                </div>
+            </div>
+        </div>
+        <div class="img-block">
+            <img src="/dist/img/image13.jpg" alt="image description">
+        </div>
+    </main>
+
+
+    <a href="#0" class="cd-top"></a>
+</div> <!--  end wrapper -->
+<div class="b-container">
+    <div class="container">
+        <aside class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <strong class="logo"><a href="#"><img src="/dist/img/logo.svg" alt="TheCodingMachine"></a></strong>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                        <address>
+                            <span class="phone">Phone: <a href="tel:+33171183973">+33 1 71 18 39 73</a></span>
+                            <span><a href="mailto:contact@thecodingmachine.com">contact@thecodingmachine.com</a></span>
+                            <span class="address">4, Rue de la Michodière<br>	PARIS - 75002<br> France</span>
+                        </address>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 col-lg-push-4 col-md-push-0 social-area">
+                        <a href="http://www.thecodingmachine.com/entreprise#rejoindre"><strong class="title">We are hiring!</strong></a>
+                        <div class="row" style="margin-top: 45px;">
+                            <div class="col-xs-12">
+                                <ul class="list-inline social-networks">
+                                    <li><a href="https://www.facebook.com/the.coding.machine" target="_blank"><i class="fa fa-facebook fa-lg"></i></a></li>
+                                    <li><a href="https://twitter.com/coding_machine" target="_blank"><i class="fa fa-twitter fa-lg"></i></span></a></li>
+                                    <li><a href="https://www.linkedin.com/company/the-coding-machine" target="_blank"><i class="fa fa-linkedin fa-lg"></i></span></a></li>
+                                    <!-- 											<li><a href="https://plus.google.com/104076796617273378986/posts" ><i class="fa fa-google-plus fa-lg"></i></span></a></li> -->
+                                </ul>
+                                <div class="fb-likes"><div class="fb-like" data-href="https://www.facebook.com/the.coding.machine" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <footer class="row" id="footer">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-0">
+                <span class="copyright">&copy; 2015 <a href="http://www.thecodingmachine.com/">TheCodingMachine</a> - All Rights Reserved</span>
+                <span class="design-by">Design by <a href="http://www.allaboutdavid.fr/" target="_blank">All about david</a><br/>
+                Powered by <a href="http://couscous.io/">Couscous</a></span>
+            </div>
+        </footer>
+    </div>
+</div>
+</body>
+</html>
