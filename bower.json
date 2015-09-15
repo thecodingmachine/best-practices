@@ -1,0 +1,19 @@
+{
+  "name": "tcm-best-practices",
+  "version": "1.0.0",
+  "authors": [
+    "David Négrier <d.negrier@thecodingmachine.com>"
+  ],
+  "homepage": "http://bestpractices.thecodingmachine.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11",
+    "highlightjs": "~8.8.0"
+  }
+}

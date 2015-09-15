@@ -1,0 +1,240 @@
+
+
+body {
+	padding-top: 0px;
+}	
+
+.table-holder img {
+	width : 150px;
+}
+  
+  
+.origa {
+ 
+  transition: 0s ease;
+  &.origa-1 {
+  	background-position-y: 0%;
+  	background-position-x: 50%;
+    background: url("@{images}/origa-1.png") no-repeat top center;
+    height: 450px;
+    transform: translate3d(0, 0, 0); // Activate GPU
+  }
+  &.origa-2 {
+  	background-position-y: 0 !important;
+  	background-position-x: 10%;
+    background: url("@{images}/origa-2.png") no-repeat fixed;
+    height: 300px;
+  
+  }
+  &.origa-3 {
+  	background-position-y: 0%;
+  	background-position-x: 50%;
+    background: url("@{images}/origa-1.png") no-repeat fixed;
+    height: 450px;
+    transform: translate3d(0, 0, 0); // Activate GPU
+  }
+  &.origa-4 {
+  	background-position-y: 0%;
+  	background-position-x: 50%;
+    background: url("@{images}/image13.jpg") no-repeat fixed;
+    height: 450px;
+    transform: translate3d(0, 0, 0); // Activate GPU
+  }
+}
+
+.list {
+	min-height: 26px;
+}
+
+.designing-block .book .book-image {
+	border: 7px solid @very-light-grayish;
+}
+
+.book-legend {
+  padding: 0 7px;
+  min-height: 150px;
+  margin-bottom: 10px;
+  display: block;
+  .transition(all .35s ease);
+  .title {
+    font-size: 22px;
+    line-height: 24px;
+    display: block;
+    color: @blackColor;
+    margin-bottom: 15px;
+    font-weight: @lightWeight;
+  }
+  span {
+    color: @middleGreyColor;
+  }
+}
+
+.book-wrapper:hover {
+  text-decoration: none;
+  .book {
+    .book-image {
+      text-decoration: none;
+    }
+  }
+  .book-legend {
+    span {
+      color: @blackColor;
+    }
+  }
+  
+}
+
+.carousel-inner > .item > a > img {
+	max-height: 518px;
+	margin: 0 auto;
+}
+
+.logo-temoignages  {
+	height: 50px;
+}
+
+.logo-temoignages-empty  {
+	height: 50px;
+	margin-bottom: 29px;
+}
+
+.logo-temoignages img {
+	max-height: 50px;
+}
+
+.quote-temoignage a {
+	color: #232323;
+}
+
+.equipe-images {
+	.col {
+		width: 100% !important;
+	}
+}
+
+
+.cd-top {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: rgba(232, 98, 86, 0.8) url(../img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+@media only screen and (min-width: 768px) {
+  .cd-top {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .cd-top {
+    height: 60px;
+    width: 60px;
+    right: 30px;
+    bottom: 30px;
+  }
+}
+
+.livre-blanc .fixed {
+	min-height: 0 !important;
+}
+
+.clearfix-separator {
+	border-bottom: 1px solid #cccccc;
+	margin : 15px 15px 30px 15px;;
+}
+
+.title-more {
+	font-size: 50px !important;
+	
+}
+
+.book-image-more{
+	background-color: #e0e2e4;
+}
+
+.book-image-more:hover{
+	background-color: #2f3188;
+}
+
+.references-area:before {
+	z-index: 10 !important;
+}
+
+.txt.txt-phrase {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+section.services {
+  background-color: #2D3389;
+  color: white;
+
+  h1, h2 {
+    color: white;
+  }
+
+  a.learn-more {
+    color: white;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+#header {
+  padding: 14px 0 14px !important;
+}
+
+.home {
+  .references {
+    padding-bottom: 50px;
+  }
+
+  .our-team {
+    padding-top: 100px;
+  }
+
+  .origa.origa-2 {
+    background-position-y: 100% !important;
+  }
+}
+
+.blog-content {
+    font-size: 16px;
+}
+
+.origa-expertise {
+  background-position-y: 100% !important;
+}

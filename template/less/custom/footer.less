@@ -1,0 +1,143 @@
+@import "custom-mixins.less";
+.b-container {
+	overflow: hidden;
+	padding: 119px 0 0;
+	background: @v-dark-gray;
+	.logo {
+		margin: 0;
+	}
+	.social-networks, .fb-likes {
+		float: left;
+	}
+	.fb-likes {
+		width: 92px;
+		img {
+			display: block;
+		}
+	}
+	address {
+		margin: 2px 0 0;
+	}
+	.social-area {
+		padding-left: 39px;
+		.title {
+			color: @white;
+			display: block;
+			margin: 5px 0 24px;
+			font: 400 18px/22px @roboto;
+		}
+	}
+	.social-networks {
+		max-width: 200px;
+		margin: -1px 25px 10px -14px;
+		li {
+			padding: 0;
+			vertical-align: middle;
+			margin: 0 0 0 14px;
+			&:first-child {
+				margin: 0 2px 0 14px;
+			}
+		}
+		a {
+			display: block;
+			overflow: hidden;
+			position: relative;
+			color: @very-darkest-gray;
+			&:hover {
+				text-decoration: none;
+				opacity: 0.9;
+			}
+		}
+		span {
+			position: absolute;
+			top: 0;
+			left: 0;
+			&:before {
+				position: absolute;
+				line-height: 100%;
+				top: 0;
+				left: 0;
+			}
+		}
+		.facebook {
+			.size(11px, 22px);
+		}
+		.twitter {
+			.size(19px, 21px);
+		}
+		.vimeo {
+			.size(22px, 19px);
+		}
+		.icon-facebook {
+			&:before {
+				.size(11px, 22px);
+				font-size: 28px;
+				left: -8px;
+				top: -5px;
+			}
+		}
+		.icon-twitter {
+			&:before {
+				.size(20px, 21px);
+				font-size: 21px;
+			}
+		}
+		.icon-vimeo {
+			&:before {
+				.size(22px, 19px);
+				font-size: 20px;
+			}
+		}
+	}
+}
+#footer {
+	padding: 95px 0 90px;
+	.copyright, .design-by {
+		.alignment(top);
+		font: 400 12px/14px @roboto;
+	}
+	.copyright {
+		color: @dark-gray;
+		a {
+			color: @dark-gray;
+		}
+	}
+	.design-by {
+		color: @very-dark-grayish;
+		margin: 0 0 0 16px;
+		a {
+			color: @very-dark-grayish;
+		}
+	}
+}
+@media @tablet {
+	.b-container {
+		padding: 30px 0 0;
+		.social-area {
+			padding-left: 15px;
+		}
+	}
+	#footer {
+		padding: 20px 0;
+	}
+}
+@media @mobile {
+	.b-container {
+		text-align: center;
+		padding: 30px 0 0;
+		.logo {
+			margin: 0 auto 10px;
+		}
+		.social-networks, .fb-likes {
+			float: none;
+			.alignment(top);
+		}
+		.social-area {
+			text-align: center;
+			padding-left: 15px;
+			.title {
+				margin: 20px 0 10px;
+			}
+		}
+	}
+}

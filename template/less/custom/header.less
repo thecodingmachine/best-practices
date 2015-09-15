@@ -1,0 +1,199 @@
+@import "custom-mixins.less";
+.red {
+	#header {
+		background: @bright-red;
+	}
+}
+.blue {
+	#header {
+		background: @dark-moderate-blue;
+	}
+}
+.violet {
+	#header {
+		background: @dark-grayish-violet;
+	}
+}
+#header {
+	padding: 40px 0;
+	.clearfix();
+	&.absolute {
+		background: transparent;
+		position: absolute;
+		z-index: 1000;
+		width: 100%;
+	}
+	&.fixed {
+		background: @white !important;
+		position: fixed;
+		z-index: 1000;
+		width: 100%;
+		padding: 14px 0 14px;
+		top: 0;
+		left: 0;
+		.navbar-nav {
+			li {
+				a {
+					color: @very-darkest-gray!important;
+				}
+			}
+		}
+		.logo-black {
+			display: block;
+		}
+		.logo-white {
+			display: none;
+		}
+		h2 {
+		  	color: @very-darker-gray;
+		}
+	}
+	.logo-black {
+		display: none;
+	}
+	.logo-white {
+		display: block;
+	}
+  h2 {
+	color: white;
+  }
+}
+.logo {
+	display: block;
+	width: 263px;
+	margin: 14px 0 0;
+	img {
+		display: block;
+		.size(100%, auto);
+	}
+}
+
+.navbar {
+	min-height: inherit;
+	margin: 11px 0 0;
+}
+.navbar-nav {
+	float: right;
+	letter-spacing: 1px;
+	font: 700 13px/15px @roboto;
+	text-transform: uppercase;
+	li {
+		margin: 0 0 0 29px;
+		a {
+			padding: 0;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		&.active {
+			a {
+				text-decoration: underline;
+			}
+		}
+		li {
+			margin: 5px 0;
+			padding: 0 10px;
+			a {
+				display: inline;
+				&:hover {
+					background: none;
+				}
+			}
+		}
+	}
+}
+
+@media @tablet {
+	.logo {
+		width: 200px;
+	}
+	.navbar {
+		margin: 14px 0 0;
+	}
+	.navbar-nav {
+		font: 700 12px/14px @roboto;
+		margin: 0 0 0 -12px;
+		li {
+			margin: 0 0 0 10px;
+		}
+	}
+}
+@media @mobile {
+	#header {
+		padding: 30px 0 0;
+		&.absolute {
+			.navbar-toggle {
+				margin-right: 15px;
+			}
+		}
+		.navbar-collapse {
+			background: @white;
+		}
+		.container {
+			padding: 0;
+		}
+		.navbar-default {
+			.navbar-nav {
+				li {
+					a {
+						color: @very-darkest-gray!important;
+					}
+				}
+			}
+		}
+		&.fixed {
+			padding-bottom: 0;
+			.navbar-toggle {
+				margin-bottom: 5px;
+				background: @very-darker-gray;
+			}
+		}
+	}
+	.logo {
+		width: 160px;
+		margin: 0 auto;
+	}
+	.navbar {
+		margin: 0;
+	}
+	.navbar-nav {
+		font: 700 12px/14px @roboto;
+		margin: 10px 0;
+		text-align: center;
+		width: 100%;
+		li {
+			margin: 0;
+			a {
+				display: inline;
+			}
+		}
+		.open {
+			.dropdown-menu {
+				text-align: center;
+				li {
+					a {
+						padding: 0;
+					}
+				}
+			}
+		}
+	}
+	.navbar-default {
+		.navbar-toggle {
+			&:hover, &:focus {
+				.icon-bar {
+					background: @bright-red;
+				}
+			}
+		}
+		.navbar-collapse {
+			box-shadow: none;
+			border-top: 1px solid @white;
+		}
+	}
+	.navbar-toggle {
+		margin-top: -27px;
+		margin-bottom: 15px;
+		margin-right: 15px;
+	}
+}

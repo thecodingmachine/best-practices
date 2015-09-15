@@ -1,0 +1,123 @@
+/******************************************************************
+Site Name: Brew
+Author: Dan Brown
+
+Stylesheet: Main Stylesheet
+
+Here's where the magic happens. First we are calling the bootstrap
+LESS files.  Then we'll load Font Awesome.  Any customizations 
+should be placed in either custom-variables.less, a new less file,
+or the proper file inside less/brew
+******************************************************************/
+
+
+//
+// IMPORTING STYLES
+//
+
+// Core variables and mixins
+@import "bootstrap/variables.less";
+@import "custom-variables.less"; // custom variables
+@import "bootstrap/mixins.less";
+
+// Reset
+@import "bootstrap/normalize.less";
+@import "bootstrap/print.less";
+
+// Core CSS
+@import "bootstrap/scaffolding.less";
+@import "bootstrap/type.less";
+@import "bootstrap/code.less";
+@import "bootstrap/grid.less";
+@import "bootstrap/tables.less";
+@import "bootstrap/forms.less";
+@import "bootstrap/buttons.less";
+
+// Components
+@import "bootstrap/component-animations.less";
+@import "bootstrap/glyphicons.less";
+@import "bootstrap/dropdowns.less";
+@import "bootstrap/button-groups.less";
+@import "bootstrap/input-groups.less";
+@import "bootstrap/navs.less";
+@import "bootstrap/navbar.less";
+@import "bootstrap/breadcrumbs.less";
+@import "bootstrap/pagination.less";
+@import "bootstrap/pager.less";
+@import "bootstrap/labels.less";
+@import "bootstrap/badges.less";
+@import "bootstrap/jumbotron.less";
+@import "bootstrap/thumbnails.less";
+@import "bootstrap/alerts.less";
+@import "bootstrap/progress-bars.less";
+@import "bootstrap/media.less";
+@import "bootstrap/list-group.less";
+@import "bootstrap/panels.less";
+@import "bootstrap/wells.less";
+@import "bootstrap/close.less";
+
+// Components w/ JavaScript
+@import "bootstrap/modals.less";
+@import "bootstrap/tooltip.less";
+@import "bootstrap/popovers.less";
+@import "bootstrap/carousel.less";
+
+// Utility classes
+@import "bootstrap/utilities.less";
+@import "bootstrap/responsive-utilities.less";
+
+// Font Awesome
+@import "font-awesome/less/font-awesome.less";
+
+// BREW files
+@import "brew/wp-core.less"; // styles for text formatting, captions, galleries, etc
+@import "brew/global.less"; // BREW global styles
+@import "brew/comments.less"; // styles for comments
+@import "brew/tables.less"; // styles for tables
+@import "brew/form.less"; // styles for forms
+@import "brew/sidebar.less"; // styles for sidebars
+@import "brew/footer.less"; // styles for footer
+@import "brew/content.less"; // styles for wordpress pages/posts etc
+@import "brew/nav.less"; // styles for navigation and header
+@import "brew/body.less"; // target specific body classes
+@import "brew/components.less"; // components built for BREW such as breadcrumbs, next/previous buttons, etc
+@import "brew/brew.less"; // this is for the sample BREW site.  Feel free to delete
+
+
+// Custom TheCodingMachine styles
+@import "custom/base.less";
+@import "custom/global.less";
+@import "custom/custom-mixins.less";
+@import "custom/variables.less";
+@import "custom/header.less";
+@import "custom/footer.less";
+
+// Side styles
+@import "css/ie.less";
+@import "css/login.less";
+@import "css/animate.less";
+
+
+/*
+RETINA (2x RESOLUTION DEVICES)
+This applies to the retina iPhone (4s) and iPad (2,3) along with
+other displays with a 2x resolution. You can also create a media
+query for retina AND a certain size if you want. Go Nuts.
+*/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-device-pixel-ratio: 1.5) {
+
+	// styles in 2x.less
+	@import "other/_2x.less";
+
+} // end of media query
+
+/*
+iPHONE 5 MEDIA QUERY
+Want to get fancy for no good reason? Knock yourself out.
+*/
+@media (device-height: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  // iPhone 5 or iPod Touch 5th generation styles (you can include your own file if you want)
+}
+
