@@ -31,3 +31,6 @@ menu:
         php-exceptions:
             text: Error handling
             relativeUrl: php/error_handling.html
+        php-coding-style:
+            text: Coding style
+            relativeUrl: php/coding_style.html
