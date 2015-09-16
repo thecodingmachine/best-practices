@@ -14,3 +14,8 @@ website. And if you are simply a PHP developer looking for best practices, we ar
 
 We believe that a best practice is only worthwhile if we know why it is a best practice. So for each rule stated
 in this website, there is also the comment explaining why you should code this way and not otherwise.
+
+Work in progress
+----------------
+
+We are in the process of writing our best practices... and there are many. So stay tuned for more tips to come!

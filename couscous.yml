@@ -34,3 +34,6 @@ menu:
         php-coding-style:
             text: Coding style
             relativeUrl: php/coding_style.html
+        php-cli:
+            text: Scripts and command line
+            relativeUrl: php/cli.html
