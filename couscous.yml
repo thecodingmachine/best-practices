@@ -31,6 +31,9 @@ menu:
         php-exceptions:
             text: Error handling
             relativeUrl: php/error_handling.html
+        php-organize:
+            text: Organize your code
+            relativeUrl: php/organize_your_code.html
         php-coding-style:
             text: Coding style
             relativeUrl: php/coding_style.html
