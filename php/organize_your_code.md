@@ -19,7 +19,7 @@ There are many frameworks out there, ranging from the gigantic Symfony 2 or Zend
 Slim 3 or Silex micro-routers. At TheCodingMachine we even have our very own [Mouf](http://mouf-php.com), 
 a framework based on dependency injection with a web-based UI.
 
-In order to have a code that does not look like a spaghetti plate, You want to organize your code using 
+In order to have a code that does not look like a spaghetti plate, you will want to organize your code using 
 controllers / services and a data layer.
 
 <div class="row">
