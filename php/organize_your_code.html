@@ -8,7 +8,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title> | TheCodingMachine Best practices</title>
+    <title>Organize your code | TheCodingMachine Best practices</title>
 
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -200,7 +200,7 @@
                                                 Error handling
                                             </a>
                                         </li>
-                                                                                                                                                <li class=" visible-xs-block">
+                                                                                                                                                <li class="active visible-xs-block">
                                             <a href="http://bestpractices.thecodingmachine.com/php/organize_your_code.html">
                                                 Organize your code
                                             </a>
@@ -251,7 +251,7 @@
                                                         Error handling
                                                     </a>
                                                 </li>
-                                                                                                                                                                                <li class="">
+                                                                                                                                                                                <li class="active">
                                                     <a href="http://bestpractices.thecodingmachine.com/php/organize_your_code.html">
                                                         Organize your code
                                                     </a>
@@ -276,23 +276,288 @@
                 </aside>
 
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 content">
-                    <h1> <small></small></h1>
-                    <h1 id="thecodingmachine-best-practices">TheCodingMachine Best practices</h1>
-<h2 id="why-this-website">Why this website?</h2>
-<p>At <a href="http://www.thecodingmachine.com">TheCodingMachine</a> we write code. We read code too... a lot. This is because
-we use GIT and &quot;pull-requests&quot;. For each project, the code has to be reviewed by someone before being pushed
-to the main branch. Very often, code reviewers are making the same comments, over and over. Hence the idea
-to create a website about our best practices.</p>
-<p>If you ever come to work with us, know that we will expect your code to follow the best practices described in this
-website. And if you are simply a PHP developer looking for best practices, we are happy to share those with you.</p>
-<p>We believe that a best practice is only worthwhile if we know why it is a best practice. So for each rule stated
-in this website, there is also the comment explaining why you should code this way and not otherwise.</p>
-<h2 id="work-in-progress">Work in progress</h2>
-<p>We are in the process of writing our best practices... and there are many. So stay tuned for more tips to come!</p>
+                    <h1>Organize your code <small>PHP Best practices</small></h1>
+                    <h2 id="use-a-mvc-framework">Use a MVC framework</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule">Rule</h3>
+<div class="alert alert-info">Use a framework.</div>
+<h3 id="explanation">Explanation</h3>
+<p>Depending on the project we work on, we use different set of tools. One thing is sure however: we always use a
+framework that provides a descent <strong>router</strong>.</p>
+<p>There are many frameworks out there, ranging from the gigantic Symfony 2 or Zend Framework 2 to the very small
+Slim 3 or Silex micro-routers. At TheCodingMachine we even have our very own <a href="http://mouf-php.com">Mouf</a>,
+a framework based on dependency injection with a web-based UI.</p>
+<p>In order to have a code that does not look like a spaghetti plate, you will want to organize your code using
+controllers / services and a data layer.</p>
+<div class="row">
+<div class="col-xs-6 col-xs-offset-3 box">Request</div>
+</div>
+<div class="row">
+<div class="col-xs-6 col-xs-offset-3 arrow-down"></div>
+</div>
+<div class="row">
+<div class="col-xs-12 box">Controllers</div>
+</div>
+<div class="row">
+<div class="col-xs-7 arrow-down"></div>
+<div class="col-xs-5 arrow-down"></div>
+</div>
+<div class="row">
+<div class="col-xs-6 box">Services</div>
+<div class="col-xs-1 arrow-right"></div>
+<div class="col-xs-5 box">DAOs / Repositories</div>
+</div>
+<p></p>
+<ul>
+<li>When a <strong>request</strong> arrives, it is routed by the framework to a <strong>controller</strong></li>
+<li>The <strong>controller</strong> is in charge of analyzing the request and calling the relevant <strong>services</strong> or <strong>DAOs</strong>
+(Data Access Objects, the classes in charge of communicating with the database).</li>
+<li><strong>Services</strong> are objects that perform some kind of computation. It can be on the &quot;domain layer&quot; (i.e. computation
+that is directly related to the code of your application - what makes your application specific - ) or it can be
+purely technical services (like a mailer, a logger, etc...)</li>
+<li>Finally, the controller aggregates data received from various services and calls a &quot;view&quot; that will render the
+data in HTML (unless it is directly sent in another format like JSON).</li>
+</ul>
+<h2 id="limit-the-code-in-your-controllers">Limit the code in your controllers</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-1">Rule</h3>
+<div class="alert alert-info"><strong>Limit the code in your controllers!</strong> A controller should not perform 
+any kind of computation or any kind of database access. Its only role is to take the request and call the 
+appropriate services. Based on the services response, it will generate the HTTP response send back to the 
+browser (generally some HTML using a view, or some JSON if we are doing AJAX).</div>
+<h3 id="explanation-1">Explanation</h3>
+<p>Controllers are just meant to be an interface between the browser and the business logic of your application.
+If you put business logic in your controller, this business logic becomes tied to a particular action.
+If tomorrow, you want to call the same business logic from a command-line script, you won't be able to do it easily.</p>
+<div class="alert alert-danger">So this is what you should NOT do:</div>
+<p>This is a sample controller. It defines a route (<code>get_product?product_id=XXX</code>) that returns HTML data representing
+a product and its price. The price is stored without VAT in database and the application must add the VAT to the price.</p>
+<pre><code class="language-php">class ProductController
+{
+    const VAT = 0.2;
+
+    private $dbConnection;
+
+    public function __construct(Connection $dbConnection) {
+        $this-&gt;dbConnection = $dbConnection;
+    }
+
+    /**
+     * This is a sample action based on Splash 7, but this could as well be used in any framework.
+     * @URL /get_product
+     */
+    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+        $productId = $request-&gt;getParams()['product_id'];
+        // Let's get the product from database
+        $sql = 'SELECT name, price FROM products WHERE id = ?';
+        $stmt = $this-&gt;dbConnection-&gt;executeQuery($sql, [ $productId ]);
+        $product = $stmt-&gt;fetch(\PDO::FETCH_ASSOC);
+
+        // Let's add the VAT:
+        $product['price'] = $product['price'] * (1 + self::VAT); 
+
+        // Let's output some HTML:
+        $html = "&lt;p&gt;Product: ".$product['name']."&lt;/p&gt;";
+        $html .= "&lt;p&gt;Price: \$".$product['price']."&lt;/p&gt;";
+        return new HtmlResponse($html);
+    }
+}</code></pre>
+<p>This code is <strong>wrong</strong> on many aspects.</p>
+<ol>
+<li>First, it performs a database access in a controller. DB access should be
+processed in dedicated classes (and moreover, the developer should consider using an ORM).</li>
+<li>It performs business logic, like computing the VAT from the product price.</li>
+<li>It generates HTML instead of delegating this to the view component of the framework.</li>
+</ol>
+<div class="alert alert-success">Instead, the controller should look like this:</div>
+<pre><code class="language-php">class ProductController
+{
+    private $productRepository;
+    private $vatService;
+    private $twig;
+
+    public function __construct(ProductRepository $productRepository, 
+                                VatService $vatService,
+                                Twig_Environment $twig) {
+        $this-&gt;productRepository = $productRepository;
+        $this-&gt;vatService = $vatService;
+        $this-&gt;twig = $twig;
+    }
+
+    /**
+     * This is a sample action based on Splash 7, but this could as well be used in any framework.
+     * @URL /get_product
+     */
+    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+        // The controller is in charge of extracting the parameters from the request.
+        $productId = $request-&gt;getParams()['product_id'];
+        // The product is fetched from the appropriate service
+        // The service should return an *object* representing the product.
+        $product = $this-&gt;productRepository-&gt;getProductById($productId);
+
+        // In turn, we can call the VAT service to get the product price with VAT:
+        $vat = $this-&gt;vatService-&gt;computeVat($this-&gt;product-&gt;getPrice());
+
+        // Finally, the HTML generation is deferred to a view component. Here, we use Twig:
+        $template = $twig-&gt;loadTemplate('product.twig');
+        return new HtmlResponse($template-&gt;render([
+            'product'=&gt;$product,
+            'vat'=&gt;$vat
+        ]);
+    }
+}</code></pre>
+<h2 id="stop-using-superglobals-">Stop using superglobals (<code>$_GET</code>, <code>$_POST</code>...)</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-2">Rule</h3>
+<div class="alert alert-info">Do not use superglobals like `$_GET`, `$_POST` or `$_REQUEST`.
+Instead, use the request object of your framework.</div>
+<h3 id="explanation-2">Explanation</h3>
+<p>Each MVC framework comes with a <strong>request</strong> object. Modern frameworks should <a href="http://www.php-fig.org/psr/psr-7/">share a common
+request object has it has been defined in PSR-7 compatible one</a>.
+This request object can be used to access GET and POST parameters.</p>
+<p>You should use it instead of accessing <code>$_GET</code>, <code>$_POST</code> or <code>$_REQUEST</code> directly.</p>
+<p>This has several advantages:</p>
+<ul>
+<li>you can unit-test your methods more easily since they do not rely on globals</li>
+<li>your framework can enrich the request, apply filters or middleware on it</li>
+<li>you can easily fake a request or modify a request</li>
+<li>your code is more predictable since only controllers are allowed to use that request object (see next rule)</li>
+</ul>
+<div class="alert alert-danger">So this is what you should NOT do:</div>
+<pre><code class="language-php">class ProductController
+{
+    // ...
+
+    /**
+     * @URL /get_product
+     */
+    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+        // NO! You don't access the $_GET superglobal anymore.
+        $productId = $_GET['product_id'];
+
+        // Do stuff...
+    }
+}</code></pre>
+<div class="alert alert-success">The correct version of the code is:</div>
+<pre><code class="language-php">class ProductController
+{
+    // ...
+
+    /**
+     * @URL /get_product
+     */
+    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+        // Yes! we use the $request object to access the GET parameters.
+        $productId = $request-&gt;getParams()['product_id'];
+
+        // Do stuff...
+    }
+}</code></pre>
+<h2 id="do-not-pass-the-request-object-to-services">Do not pass the request object to services</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-3">Rule</h3>
+<div class="alert alert-info">The request object should stay in your controller.</div>
+<h3 id="explanation-3">Explanation</h3>
+<p>This object should <strong>stay in the controller</strong>.</p>
+<div class="alert alert-danger">So this is what you should NOT do:</div>
+<pre><code class="language-php">class ProductController
+{
+    // ...
+
+    /**
+     * @URL /get_product
+     */
+    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+        // NO! Do not pass the request to a service or a DAO
+        $product = $this-&gt;productRepository-&gt;getProductById($request);
+
+        // Do stuff...
+    }
+}</code></pre>
+<p>The code above is <em>evil</em> because if you want to change the name of a GET parameter in your controller, suddenly, you
+have to change the code in your <code>productRepository</code> service. This is obviously wrong, since services are supposed
+to be independent from the context in which they run.</p>
+<div class="alert alert-success">The correct version of the code is:</div>
+<pre><code class="language-php">class ProductController
+{
+    // ...
+
+    /**
+     * @URL /get_product
+     */
+    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+        // The controller is in charge of extracting the parameters from the request.
+        $productId = $request-&gt;getParams()['product_id'];
+        // The service only takes the necessary parameters
+        $product = $this-&gt;productRepository-&gt;getProductById($productId);
+
+        // Do stuff...
+    }
+}</code></pre>
+<h2 id="services-should-not-return-encoded-data">Services should not return encoded data</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-4">Rule</h3>
+<div class="alert alert-info">Services should generally return PHP objects. They should not encode data in JSON.
+This is the role of the controller.</div>
+<h3 id="explanation-4">Explanation</h3>
+<p>Data returned by services should be immediately reusable by other services. In PHP, the most usable data representation
+is a PHP object, so this is what a service should return.</p>
+<p>It is not the role of a service to format the data so that it can be easily sent to the browser. This role of formatting
+is usually taken by the controller (or by the view if HTML is returned) </p>
+<p>To put things simply: <code>json_encode</code> belongs to the controller.</p>
+<div class="alert alert-danger">So this is what you should NOT do:</div>
+<pre><code class="language-php">class ProductController
+{
+    // ...
+
+    /**
+     * @URL /products
+     */
+    public function ajaxGetProducts(ServiceRequestInterface $request) {
+        return $this-&gt;productRepository-&gt;getProductList();
+    }
+}
+
+class ProductRepository
+{
+    public function getProductList() {
+        $products = [];
+        // Query products in databases
+        // ...
+
+        // NO! A service or a DAO should return objects, not encoded strings!
+        return json_encode($products);
+    }
+}</code></pre>
+<div class="alert alert-success">The correct version of the code is:</div>
+<pre><code class="language-php">class ProductController
+{
+    // ...
+
+    /**
+     * @URL /products
+     */
+    public function ajaxGetProducts(ServiceRequestInterface $request) {
+        // YES! The controller is encoding data in JSON
+        // Moreover, it is doing so using a JsonResponse object.
+        return new JsonResponse($this-&gt;productRepository-&gt;getProductList());
+    }
+}
+
+class ProductRepository
+{
+    public function getProductList() {
+        $products = [];
+        // Query products in databases
+        // ...
+        // YES! The service is returning objects.
+        return $products;
+    }
+}</code></pre>
 
                     <p class="fork-and-edit">
                     Found a typo? Something is wrong in this documentation? Just
-                    <a href="https://github.com/thecodingmachine/best-practices/blob/master/index.md">fork and edit it</a>!
+                    <a href="https://github.com/thecodingmachine/best-practices/blob/master/php/organize_your_code.md">fork and edit it</a>!
                     </p>
                 </div>
             </div>
