@@ -292,7 +292,7 @@ class Configuration {
 This has a number of advantages:
 
 - The developer using your code cannot create an object without passing all the requested parameters
-- Your IDE can provide auto-completion an optional setters. 
+- Your IDE can provide auto-completion on setters.
 
 ##Use type-hinting, as much as possible
 <span class="label label-success pull-right">Beginner</span>
