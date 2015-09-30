@@ -63,7 +63,7 @@ function writeDateInFile() {
 <span class="label label-warning pull-right">Intermediate</span>
 ### Rule
 
-<div class="alert alert-info">You should never throw the `Exception` class directly. Instead, you should consider 
+<div class="alert alert-info">You should never throw the <code>Exception</code> class directly. Instead, you should consider 
 <strong>extending</strong> the <code>Exception</code> class or using one of the available sub-classes.</div>
 
 ### Explanation
@@ -82,7 +82,7 @@ function writeDateInFile() {
 
 Why is this bad? Because you are preventing the developer to catch specific problems.
 Look at the code above. The `getSomeData` method could also throw an exception that the developer using
-your function does not want to catch.
+your function might not want to catch.
 
 <div class="alert alert-success">So instead, you should consider creating your own exception or using an exception for the SPL library:</div>
 
@@ -93,7 +93,7 @@ class FileWritingException extends \Exception {
 }
 ```
 
-Please note that your class does not need to contain any code. It just needs to extend the exception class.
+Please note that your class does not need to contain any code. It just needs to extend the `Exception` class.
 
 Now, your code looks like this:
 
@@ -144,8 +144,8 @@ This code is *clearly evil*. So you have this big complex SQL request, and if it
 in the SQL), the code is catching the error, logging it... and that's it!
 
 How long will it take before someone notices that the logs are full of SQL errors?
-An SQL error is not a runtime error, it is a design error. So if there is one, there is a bug. **And you don't catch bugs.
-Never.**
+An SQL error is not a runtime error, it is a design error. So if there is a design error, there is a bug. 
+**And you don't catch bugs. Never.**
 
 <div class="alert alert-success">Instead, the correct code is:</div>
 
@@ -171,7 +171,7 @@ when someting goes seriously wrong and generally, there is nothing you can do to
 
 See? Most exceptions are meant to bubble up, so do not catch them!
 
-So unless you are writing an error handler, or retrowing the exception, you should always consider carefully what 
+So unless you are writing an error handler, or rethrowing the exception, you should always carefully consider what 
 exceptions you want to catch and never try to catch the `Exception` class.
 
 <div class="alert alert-danger">Bad:</div>
