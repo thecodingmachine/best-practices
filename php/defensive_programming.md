@@ -95,7 +95,7 @@ function doStuff($status) {
 }
 ```
 
-What you should do instead:
+<div class="alert alert-success">What you should do instead:</div>
 
 ```php
 class StatusEnum
