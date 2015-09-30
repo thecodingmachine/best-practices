@@ -8,7 +8,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title> | TheCodingMachine Best practices</title>
+    <title>Design beautiful classes and methods | TheCodingMachine Best practices</title>
 
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -205,7 +205,7 @@
                                                 Organize your code
                                             </a>
                                         </li>
-                                                                                                                                                <li class=" visible-xs-block">
+                                                                                                                                                <li class="active visible-xs-block">
                                             <a href="http://bestpractices.thecodingmachine.com/php/design_beautiful_classes_and_methods.html">
                                                 Design beautiful classes and methods
                                             </a>
@@ -261,7 +261,7 @@
                                                         Organize your code
                                                     </a>
                                                 </li>
-                                                                                                                                                                                <li class="">
+                                                                                                                                                                                <li class="active">
                                                     <a href="http://bestpractices.thecodingmachine.com/php/design_beautiful_classes_and_methods.html">
                                                         Design beautiful classes and methods
                                                     </a>
@@ -286,16 +286,385 @@
                 </aside>
 
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 content">
-                    <h1> <small></small></h1>
-                    <h1 id="thecodingmachine-best-practices">TheCodingMachine Best practices</h1>
-<p>This repository contains the best coding practice website of TheCodingMachine.</p>
-<p>Website URL is <a href="http://bestpractices.thecodingmachine.com">http://bestpractices.thecodingmachine.com</a></p>
-<p>The website is statically generated using <a href="http://couscous.io">Couscous</a>.</p>
-<p>Find a typo or an error? Do not hesitate to submit a pull-request.</p>
+                    <h1>Design beautiful classes and methods <small>PHP Best practices</small></h1>
+                    <h2 id="compulsory-parameters-should-be-required-in-your-constructor">Compulsory parameters should be required in your constructor</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule">Rule</h3>
+<div class="alert alert-info">Your class compulsory parameters should be set in the constructor.</div>
+<h3 id="explanation">Explanation</h3>
+<p>The constructor is called when your class is created. If you pass the compulsory parameters to the constructor,
+you know that your class is always in a &quot;valid&quot; state.</p>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">class MyService {
+    private $logger;
+
+    public function setLogger(LoggerInterface $logger) {
+        $this-&gt;logger = $logger;
+    }
+
+    private function doStuff() {
+        // ...
+        $this-&gt;logger-&gt;info('Hello world!');
+    }
+}</code></pre>
+<p>The code above is evil. The <code>doStuff</code> method clearly needs the <code>$logger</code> variable to be set.
+But nothing says the developers using your class that they have to set the logger.</p>
+<p>Someone could call the service this way:</p>
+<pre><code class="language-php">$myService = new MyService();
+
+$myService-&gt;doStuff(); // BOOM! $this-&gt;logger is null!</code></pre>
+<div class="alert alert-success">Instead, you should consider passing all required services and parameters in 
+the constructor:</div>
+<pre><code class="language-php">class MyService {
+    private $logger;
+
+    public function __construct(LoggerInterface $logger) {
+        $this-&gt;logger = $logger;
+    }
+
+    private function doStuff() {
+        // ...
+        $this-&gt;logger-&gt;info('Hello world!');
+    }
+}</code></pre>
+<p>With this code, there is no possible way <code>$logger</code> can be null!</p>
+<h2 id="avoid-optional-services-as-much-as-possible">Avoid optional services as much as possible</h2>
+<p><span class="label label-danger pull-right">Pro</span></p>
+<h3 id="rule-1">Rule</h3>
+<div class="alert alert-info">Avoid optional services as much as possible. Use compulsory "void" services instead</div>
+<h3 id="explanation-1">Explanation</h3>
+<p>It is often tempting to design a class that can optionally require some services.
+For instance, a mailer service might optionally accept a logger service in order to log whether mails have been
+successfully sent or not. What appears to be a good idea can actually make your code harder to read.</p>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">class MyMailer {
+    private $logger;
+
+    public function __construct(LoggerInterface $logger = null) {
+        $this-&gt;logger = $logger;
+    }
+
+    private function sendMail(Mail $mail) {
+        // Do stuff that actually sends the mail...
+        // ...
+        if ($this-&gt;logger) {
+            $this-&gt;logger-&gt;info('Mail successfully sent.');
+        }
+    }
+}</code></pre>
+<p>The <code>MyMailer</code> constructor can take a logger in parameter, but it is optional. This is great because it is flexible,
+but each time we want to call the logger in the <code>MyMailer</code> code, we have to wrap the call to the logger into a <code>if</code>
+statement:</p>
+<pre><code class="language-php">// Each time we call the logger, we must first check that it exists.
+if ($this-&gt;logger) {
+    $this-&gt;logger-&gt;info('Mail successfully sent.');
+}</code></pre>
+<p>The additional calls to <code>if</code> make your code less readable.</p>
+<p>Instead, you should consider using a &quot;void&quot; class (sometimes called a &quot;null&quot; class), i.e. a class that exhibits the
+behaviour of a service but that does nothing.</p>
+<div class="alert alert-success">So your code should look like this:</div>
+<pre><code class="language-php">class MyMailer {
+    private $logger;
+
+    public function __construct(LoggerInterface $logger) {
+        $this-&gt;logger = $logger;
+    }
+
+    private function sendMail(Mail $mail) {
+        // ...
+        $this-&gt;logger-&gt;info('Mail successfully sent.');
+    }
+}</code></pre>
+<p>In the code above, the <code>$logger</code> is <strong>compulsory</strong> instead of optional.</p>
+<p>If the developer does not want to log anything, he can use a <a href="https://github.com/php-fig/log/blob/master/Psr/Log/NullLogger.php"><code>NullLogger</code></a>
+so that nothing is logged.</p>
+<pre><code class="language-php">use Psr\Log\NullLogger;
+
+$myMailer = new MyMailer(new NullLogger());</code></pre>
+<p>Most libraries come with these kind of <em>null</em> or <em>void</em> objects. Some examples:</p>
+<ul>
+<li>A cache service that does not cache anything: <a href="https://github.com/doctrine/cache/blob/master/lib/Doctrine/Common/Cache/VoidCache.php"><em>Doctrine's VoidCache</em></a></li>
+<li>A mailer that does not mail anything (Swift comes with a <em>null</em> mail transport)</li>
+<li>...</li>
+</ul>
+<p>As a side note, if you are designing a new interface implemented by many classes, it is a good practice to
+provide along the interface a <em>null</em> class associated to this interface.</p>
+<div class="alert alert-info"><strong>Heads up!</strong> After reading this, you still want to implement 
+optional parameters in your class? You should set those either using <strong>an optional constructor argument</strong>
+or <strong>using a setter</strong>.</div>
+<h2 id="never-use-public-properties">Never use public properties</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-2">Rule</h3>
+<div class="alert alert-info">Your class should <strong>not contain any public property</strong>.</div>
+<h3 id="explanation-2">Explanation</h3>
+<p>Public properties are exposing the inside of the class to the outer world.
+Anyone outside the class can suddenly modify any property, therefore can put anything in the property, including
+data that make no sense. Public properties decrease the <em>robustness</em> of your code.</p>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">class Customer {
+    public $login;
+    public $password;
+    /**
+     * @var DateTimeImmutable
+     */
+    public $createTime;
+}</code></pre>
+<p>A developer using your class could easily write:</p>
+<pre><code class="language-php">$customer = new Customer();
+$customer-&gt;createTime = date(); // This is terribly wrong! We expect a DateTimeImmutable and are being given a timestamp.</code></pre>
+<div class="alert alert-success">Instead, you need to 
+<a href="https://en.wikipedia.org/wiki/Encapsulation_%28computer_programming%29">encapsulate properties</a> in your 
+code, by using getters and setters (or getters only when it is possible). Your code should look like this:</div>
+<pre><code class="language-php">class Customer {
+    ...
+
+    /**
+     * @var DateTimeImmutable
+     */
+    private $createTime;
+
+    public function setCreateTime(DateTimeImmutable $createTime) {
+        $this-&gt;createTime = $createTime;
+    }
+
+    public function getCreateTime() {
+        return $this-&gt;createTime;
+    }
+}</code></pre>
+<p>Because we are using type-hinting, there is no way a developer using our class can set anything else that a
+<code>DateTimeImmutable</code> instance into our <code>$createTime</code> property.</p>
+<div class="alert alert-info"><strong>Heads up!</strong> Yes, writing setters and getters is a fastidious.
+Please do not write those yourself. Your IDE should be able to write getters and setters for you
+(and if it cannot, consider changing your IDE).</div>
+<ul>
+<li>PHPStorms supports generating getters and setters out of the box.</li>
+<li>Eclipse PDT has <a href="http://p2-dev.pdt-extensions.org/phpfeatures.html">extensions allowing generating getters and setters too</a></li>
+<li>...</li>
+</ul>
+<h2 id="avoid-option-arrays-in-constructors">Avoid option arrays in constructors</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-3">Rule</h3>
+<div class="alert alert-info">Avoid passing an array of options to your constructor.</div>
+<h3 id="explanation-3">Explanation</h3>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">class Table {
+    // ...
+
+    public function __construct(array $options) {
+        // ...
+    }
+}</code></pre>
+<p>Arrays of options are not self-explanatory. There is no way you can know all the possible keys accepted by the <code>$options</code>
+array without reading the code or reading the documentation (assuming the documentation is up to date!)</p>
+<div class="alert alert-success">Instead, consider passing all parameters in the constructor:</div>
+<pre><code class="language-php">class Table {
+    // ...
+
+    public function __construct(array $rows, $borderWidth = 0, $borderColumn = "red", /*, ...*/) {
+        // ...
+    }
+}</code></pre>
+<p>If you have really too many possible options (20+ possible options with many being optional), consider writing a
+<code>Configuration</code> class for your service:</p>
+<pre><code class="language-php">class Table {
+    // ...
+
+    public function __construct(Configuration $configuration) {
+        // ...
+    }
+}
+
+class Configuration {
+    private $rows;
+    private $borderWidth = 0;
+    private $borderColumn = "red";
+
+    // Compulsory parameters go in the constructor
+    public function __construct(array $rows) {
+        $this-&gt;rows = $rows;
+    }
+
+    // Optional parameters go in setters
+    public function setBorderWidth($borderWidth) {
+        $this-&gt;borderWidth = $borderWidth;
+    }
+
+    // ...
+}</code></pre>
+<p>This has a number of advantages:</p>
+<ul>
+<li>The developer using your code cannot create an object without passing all the requested parameters</li>
+<li>Your IDE can provide auto-completion an optional setters. </li>
+</ul>
+<h2 id="use-type-hinting-as-much-as-possible">Use type-hinting, as much as possible</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-4">Rule</h3>
+<div class="alert alert-info">Type-hint everything you can. If you are using PHP7, use strict mode and
+scalar type hinting.</div>
+<h3 id="explanation-4">Explanation</h3>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">class MyMailer {
+    private $logger;
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function __construct($logger) {
+        $this-&gt;logger = $logger;
+    }
+}</code></pre>
+<p>PHP is weakly typed by default. This means you could put absolutely anything in the <code>$logger</code> parameter.</p>
+<p>Like this:</p>
+<pre><code class="language-php">$myMailer = new MyMailer("log.txt"); // BOOM! We are expecting a logger instance, not a string!</code></pre>
+<div class="alert alert-success">Instead, you should write:</div>
+<pre><code class="language-php">class MyMailer {
+    private $logger;
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function __construct(LoggerInterface $logger) {
+        $this-&gt;logger = $logger;
+    }
+}</code></pre>
+<p>With the code above, developers calling your constructor MUST pass a <code>LoggerInterface</code> to the <code>$logger</code> parameter.
+Otherwise, PHP will report an error.</p>
+<h2 id="type-hint-on-the-interface-not-the-implementation">Type-hint on the interface, not the implementation</h2>
+<p><span class="label label-danger pull-right">Pro</span></p>
+<h3 id="rule-5">Rule</h3>
+<div class="alert alert-info">When putting type hinting into your methods, <strong>always put an interface</strong> 
+rather than a concrete class.</div>
+<h3 id="explanation-5">Explanation</h3>
+<p>If your class is depending on interfaces rather than classes, your class has no dependencies on a specific
+implementation. Your code becomes more modular. </p>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">class MyMailer {
+    private $logger;
+
+    public function __construct(FileLogger $logger) {
+        $this-&gt;logger = $logger;
+    }
+}</code></pre>
+<p>In the example above, the <code>MyMailer</code> class requires a <code>FileLogger</code> class to run. This means that the mailer will
+always write in a log file using the <code>FileLogger</code> class. This is very rigid.</p>
+<div class="alert alert-success">Instead, you should write:</div>
+<pre><code class="language-php">class MyMailer {
+    private $logger;
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function __construct(LoggerInterface $logger) {
+        $this-&gt;logger = $logger;
+    }
+}</code></pre>
+<p>Now, the <code>MyMailer</code> class can take any existing logger, including database loggers, null loggers, etc...</p>
+<p>Your code becomes more <strong>decoupled</strong>.</p>
+<div class="alert alert-info"><strong>Heads up!</strong> This principle is called the 
+<em><a href="https://en.wikipedia.org/wiki/Dependency_inversion_principle">Dependency inversion principle</a></em> 
+(not to be mistaken for the dependency injection principle which is 
+something completely different). It is sometimes expressed this way: <em>Depend upon Abstractions. Do not depend upon 
+concretions.</em></div>
+<div class="alert alert-info"><strong>Heads up 2!</strong> This principle is very important when you are 
+manipulating services, or when you are designing reusable packages. Creating an interface takes some time however,
+and if you are absolutely positive that this interface will never be implemented more than once (for instance
+if you are manipulating business objects or entities), it can be acceptable to type-hint on the class directly.</div>
+<h2 id="avoid-passing-ids-to-methods-when-you-can-pass-objects">Avoid passing IDs to methods when you can pass objects</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-6">Rule</h3>
+<div class="alert alert-info">When designing a method, prefer using objects as attributes rather than
+using an ID representing these objects.</div>
+<h3 id="explanation-6">Explanation</h3>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">class MyMailer {
+    public function sendSubscriptionMail($userId) {
+        // Do stuff...
+    }
+}</code></pre>
+<p>You cannot type-hint on an ID. When an ID is passed to your method, you never know if it is a valid ID or not.</p>
+<p>In the example above, a lot of things can go wrong:</p>
+<pre><code class="language-php">$myMailer-&gt;sendSubscriptionMail(null); // BOOM!
+$myMailer-&gt;sendSubscriptionMail(-42); // BOOM! -42 is not likely to be a valid ID</code></pre>
+<div class="alert alert-success">Instead, you should consider passing directly the object 
+(for instance an entity that comes from the DB).</div>
+<pre><code class="language-php">class MyMailer {
+    public function sendSubscriptionMail(User $user) {
+        // Do stuff...
+    }
+}</code></pre>
+<h3 id="a-quick-note-about-performance">A quick note about performance</h3>
+<p>Sometimes, the service only needs the ID and nothing else stored in the object.
+For instance, if you build a TODO software, you might have a service that fetches all TODOs the current user has.
+The service will probably perform a query in database on the &quot;todo&quot; table, filtering on the user id.</p>
+<p>It is tempting to write something like this:</p>
+<pre><code class="language-php">class TodoService {
+    // ...
+
+    public function getTodoForUser($userId) {
+        $sql = "SELECT * FROM todos WHERE user_id = :userId";
+        return $this-&gt;db-&gt;query($sql, [ "userId", $userId ];
+    }
+}</code></pre>
+<p>Especially, you don't have to call the <code>UserService</code> to get the <code>User</code> object, which can save an access to the database.
+So this code is optimal right? Well... first of all, don't do premature optimisation.</p>
+<p>Instead, please consider writing:</p>
+<pre><code class="language-php">class TodoService {
+    // ...
+
+    public function getTodoForUser(User $user) {
+        $sql = "SELECT * FROM todos WHERE user_id = :userId";
+        return $this-&gt;db-&gt;query($sql, [ "userId", $user-&gt;getId() ];
+    }
+}</code></pre>
+<p>Yes, you will need to retrieve the <code>$user</code> object first, but until you are facing a performance problem, this code
+is more robust and safer. Also, please consider that some ORM tools have a capability for lazy-loading objects.
+For instance, TDBM can return an instance of the <code>User</code> object without performing any call to the database. The call
+is performed only when needed. So in the end, passing the <code>User</code> object could be as fast, and of course, it is
+more reliable.</p>
+<h2 id="write-beautiful-phpdoc">Write beautiful PHPDoc</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-7">Rule</h3>
+<div class="alert alert-info">When designing a method, please write the <a href="https://en.wikipedia.org/wiki/PHPDoc">PHPDoc</a> that go with it.
+Especially, please provide a <code>@return</code> statement and please detail the content of arrays using the
+<code>Object[]</code> notation.</div>
+<h3 id="explanation-7">Explanation</h3>
+<p>Many tools can read the PHPDoc and help you with it.</p>
+<ul>
+<li>Your IDE can read it and provide auto-completion based on it</li>
+<li><a href="http://mouf-php.com">Mouf</a> offers a drag'n'drop interface for instances based on PHPDoc</li>
+<li><a href="http://scrutinizer-ci.com/">Scrutinizer</a> performs a number of type checks based on PHPDoc</li>
+</ul>
+<p>In particular, you should be sure to:</p>
+<ul>
+<li>use <code>@return</code> statements to specify the kind of objects returned by a method</li>
+<li>use <code>Object[]</code> notation instead of <code>array</code> to explain what kind of object is expected.</li>
+</ul>
+<pre><code class="language-php">/**
+ * @param User[] $users
+ */
+public function sendSubscriptionMails(array $users) {
+    foreach ($users as $user) {
+        $user-&gt;getEma... // Here the IDE will be able to provide autocompletion on the $user variable based on the PHPDoc 
+    }
+}
+
+/**
+ * @param int $id
+ * @return User
+ */
+public function getUser($id) {
+    // Do stuff
+    return $user;
+}
+
+$user = getUser(12);
+$user-&gt;getEma... // Thanks to the @return PHPDoc annotation, an IDE will be able to autocomplete the $user variable.</code></pre>
+<div class="alert alert-info"><strong>Heads up!</strong> If you are using PHP7, you should of course use
+strict mode and provide a return type for all your methods.</div>
 
                     <p class="fork-and-edit">
                     Found a typo? Something is wrong in this documentation? Just
-                    <a href="https://github.com/thecodingmachine/best-practices/blob/master/README.md">fork and edit it</a>!
+                    <a href="https://github.com/thecodingmachine/best-practices/blob/master/php/design_beautiful_classes_and_methods.md">fork and edit it</a>!
                     </p>
                 </div>
             </div>

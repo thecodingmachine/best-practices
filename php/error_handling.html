@@ -206,6 +206,11 @@
                                             </a>
                                         </li>
                                                                                                                                                 <li class=" visible-xs-block">
+                                            <a href="http://bestpractices.thecodingmachine.com/php/design_beautiful_classes_and_methods.html">
+                                                Design beautiful classes and methods
+                                            </a>
+                                        </li>
+                                                                                                                                                <li class=" visible-xs-block">
                                             <a href="http://bestpractices.thecodingmachine.com/php/coding_style.html">
                                                 Coding style
                                             </a>
@@ -254,6 +259,11 @@
                                                                                                                                                                                 <li class="">
                                                     <a href="http://bestpractices.thecodingmachine.com/php/organize_your_code.html">
                                                         Organize your code
+                                                    </a>
+                                                </li>
+                                                                                                                                                                                <li class="">
+                                                    <a href="http://bestpractices.thecodingmachine.com/php/design_beautiful_classes_and_methods.html">
+                                                        Design beautiful classes and methods
                                                     </a>
                                                 </li>
                                                                                                                                                                                 <li class="">
@@ -319,7 +329,7 @@ function writeDateInFile() {
 <h2 id="subtyping-exceptions">Subtyping exceptions</h2>
 <p><span class="label label-warning pull-right">Intermediate</span></p>
 <h3 id="rule-1">Rule</h3>
-<div class="alert alert-info">You should never throw the `Exception` class directly. Instead, you should consider 
+<div class="alert alert-info">You should never throw the <code>Exception</code> class directly. Instead, you should consider 
 <strong>extending</strong> the <code>Exception</code> class or using one of the available sub-classes.</div>
 <h3 id="explanation-1">Explanation</h3>
 <div class="alert alert-danger">What you should NOT do:</div>
@@ -332,13 +342,13 @@ function writeDateInFile() {
 }</code></pre>
 <p>Why is this bad? Because you are preventing the developer to catch specific problems.
 Look at the code above. The <code>getSomeData</code> method could also throw an exception that the developer using
-your function does not want to catch.</p>
+your function might not want to catch.</p>
 <div class="alert alert-success">So instead, you should consider creating your own exception or using an exception for the SPL library:</div>
 <pre><code class="language-php">namespace My\Namespace;
 
 class FileWritingException extends \Exception {
 }</code></pre>
-<p>Please note that your class does not need to contain any code. It just needs to extend the exception class.</p>
+<p>Please note that your class does not need to contain any code. It just needs to extend the <code>Exception</code> class.</p>
 <p>Now, your code looks like this:</p>
 <pre><code class="language-php">function writeDataInFile() {
     $data = $this-&gt;dao-&gt;getSomeData();
@@ -371,8 +381,8 @@ fail loudly (with a big error message) rather than trying to hide what is going 
 <p>This code is <em>clearly evil</em>. So you have this big complex SQL request, and if it fails (because there is a parse error
 in the SQL), the code is catching the error, logging it... and that's it!</p>
 <p>How long will it take before someone notices that the logs are full of SQL errors?
-An SQL error is not a runtime error, it is a design error. So if there is one, there is a bug. <strong>And you don't catch bugs.
-Never.</strong></p>
+An SQL error is not a runtime error, it is a design error. So if there is a design error, there is a bug.
+<strong>And you don't catch bugs. Never.</strong></p>
 <div class="alert alert-success">Instead, the correct code is:</div>
 <pre><code class="language-php">function doClevelStuff() {
     $results = $this-&gt;db-&gt;makeRequest("SELECT ...[insert complex SQL here] ");
@@ -391,7 +401,7 @@ when someting goes seriously wrong and generally, there is nothing you can do to
 <li>You have a SQL error? There is usually nothing your program can do to fix this</li>
 </ul>
 <p>See? Most exceptions are meant to bubble up, so do not catch them!</p>
-<p>So unless you are writing an error handler, or retrowing the exception, you should always consider carefully what
+<p>So unless you are writing an error handler, or rethrowing the exception, you should always carefully consider what
 exceptions you want to catch and never try to catch the <code>Exception</code> class.</p>
 <div class="alert alert-danger">Bad:</div>
 <pre><code class="language-php">try {
