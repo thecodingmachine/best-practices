@@ -34,6 +34,9 @@ menu:
         php-organize:
             text: Organize your code
             relativeUrl: php/organize_your_code.html
+        php-beautiful-classes-and-methods:
+            text: Design beautiful classes and methods
+            relativeUrl: php/design_beautiful_classes_and_methods.html
         php-coding-style:
             text: Coding style
             relativeUrl: php/coding_style.html
