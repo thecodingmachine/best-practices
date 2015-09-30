@@ -426,7 +426,7 @@ class MyMailer {
 
 You cannot type-hint on an ID. When an ID is passed to your method, you never know if it is a valid ID or not.
 
-In the example above, a lot fo things can go wrong:
+In the example above, a lot of things can go wrong:
  
 ```php
 $myMailer->sendSubscriptionMail(null); // BOOM!
