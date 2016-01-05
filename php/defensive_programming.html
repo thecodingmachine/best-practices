@@ -415,6 +415,24 @@ static method will return an instance of the <code>StatusEnum</code> class that 
 type hint on it.</p>
 <p>Your code is safer and simpler. Now, no one can call the <code>doStuff</code> method without passing a valid status, so you don't need
 to check that in your method!</p>
+<h2 id="the-yoda-condition">The Yoda condition</h2>
+<p><span class="label label-success pull-right">Padawan</span></p>
+<h3 id="rule-3">Rule</h3>
+<div class="alert alert-info">When doing logical comparisons, always put the variable on the right side, constants or literals on the left.</div>
+<h3 id="explanation-3">Explanation</h3>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">if ( $theForce == true ) {
+    $victorious = youWill( $be );
+}</code></pre>
+<p>Imagine that you omit an equal sign in the above code. The assignment would be perfectly valid, returning <code>1</code>,
+causing the <code>if</code> statement to evaluate to <code>true</code>, and you could be chasing that bug for a while.</p>
+<div class="alert alert-success">So your code should look like this:</div>
+<pre><code class="language-php">if ( true == $theForce ) {
+    $victorious = youWill( $be );
+}</code></pre>
+<p>If you omit an equal sign you’ll get a parse error, because you can’t assign to a constant like <code>true</code></p>
+<div class="alert alert-info">Note: this rule also applies to <code>==</code>, <code>!=</code>, <code>===</code>, and <code>!==</code>. 
+Yoda conditions for <code>&lt;</code>, <code> &gt; </code>, <code>&lt;=</code> or <code>&gt;=</code> are significantly more difficult to read and are best avoided.</div>
 
                     <p class="fork-and-edit">
                     Found a typo? Something is wrong in this documentation? Just
