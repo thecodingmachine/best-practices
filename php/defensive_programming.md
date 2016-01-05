@@ -179,3 +179,37 @@ type hint on it.
 
 Your code is safer and simpler. Now, no one can call the `doStuff` method without passing a valid status, so you don't need
 to check that in your method!
+
+## The Yoda condition 
+<span class="label label-success pull-right">Padawan</span>
+
+### Rule 
+
+<div class="alert alert-info">When doing logical comparisons, always put the variable on the right side, constants or literals on the left.</div>
+
+### Explanation
+
+<div class="alert alert-danger">What you should NOT do:</div>
+
+```php
+if ( $theForce == true ) {
+    $victorious = youWill( $be );
+}
+```
+
+Imagine that you omit an equal sign in the above code. The assignment would be perfectly valid, returning <code>1</code>, 
+causing the <code>if</code> statement to evaluate to <code>true</code>, and you could be chasing that bug for a while.
+
+<div class="alert alert-success">So your code should look like this:</div>
+
+```php
+if ( true == $theForce ) {
+    $victorious = youWill( $be );
+}
+```
+
+If you omit an equal sign you’ll get a parse error, because you can’t assign to a constant like <code>true</code>
+
+<div class="alert alert-info">Note: this rule also applies to <code>==</code>, <code>!=</code>, <code>===</code>, and <code>!==</code>. 
+Yoda conditions for <code>&lt;</code>, <code> > </code>, <code>&lt;=</code> or <code>>=</code> are significantly more difficult to read and are best avoided.</div>
+
