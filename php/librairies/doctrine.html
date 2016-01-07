@@ -8,7 +8,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title> | TheCodingMachine Best practices</title>
+    <title>Doctrine | TheCodingMachine Best practices</title>
 
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -299,23 +299,87 @@
                 </aside>
 
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 content">
-                    <h1> <small></small></h1>
-                    <h1 id="thecodingmachine-best-practices">TheCodingMachine Best practices</h1>
-<h2 id="why-this-website">Why this website?</h2>
-<p>At <a href="http://www.thecodingmachine.com">TheCodingMachine</a> we write code. We read code too... a lot. This is because
-we use GIT and &quot;pull-requests&quot;. For each project, the code has to be reviewed by someone before being pushed
-to the main branch. Very often, code reviewers are making the same comments, over and over. Hence the idea
-to create a website about our best practices.</p>
-<p>If you ever come to work with us, know that we will expect your code to follow the best practices described in this
-website. And if you are simply a PHP developer looking for best practices, we are happy to share those with you.</p>
-<p>We believe that a best practice is only worthwhile if we know why it is a best practice. So for each rule stated
-in this website, there is also the comment explaining why you should code this way and not otherwise.</p>
-<h2 id="work-in-progress">Work in progress</h2>
-<p>We are in the process of writing our best practices... and there are many. So stay tuned for more tips to come!</p>
+                    <h1>Doctrine <small>PHP Best practices</small></h1>
+                    <h2 id="persist-entity-only-when-you-need-to">Persist entity only when you need to</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule">Rule</h3>
+<div class="alert alert-info">You have to persist an entity when you want it to be managed by Doctrine. But please don't
+persist entities that are already managed by Doctrine.</div>
+<h3 id="explanation">Explanation</h3>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">&lt;?php
+$article = $entityManager-&gt;find('CMS\Article', 1234);
+$article-&gt;setHeadline('Hello World dude!');
+$entityManager-&gt;persist($article);
+$entityManager-&gt;flush()</code></pre>
+<p>When you get an entity from the database, it's already managed by Doctrine. You don't have to persist it again. I will not create
+any errors or bugs but you will add useless code in your project.</p>
+<div class="alert alert-success">Only persist new entity:</div>
+<pre><code class="language-php">&lt;?php
+$user = new User;
+$user-&gt;setName('Mr.Right');
+$em-&gt;persist($user);
+$em-&gt;flush();</code></pre>
+<h2 id="naming-strategy">Naming strategy</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-1">Rule</h3>
+<div class="alert alert-info">Naming strategy can provide rules for automatically generating database identifiers, 
+columns and tables names when the table/column name is not given. This feature helps reduce the verbosity of the mapping document, eliminating repetitive noise</div>
+<h3 id="explanation-1">Explanation</h3>
+<div class="alert alert-danger">What you should NOT do:</div>
+<pre><code class="language-php">/**
+ * @Entity
+ * @Table(name="users")
+ *
+ */
+class User
+{
+    /**
+     * @Id @GeneratedValue @Column(name="id", type="integer")
+     */
+    private $id = null;
+
+    /**
+     * @Column(name="login", type="string")
+     */
+    public $login;
+
+    /**
+     * @Column(name="password", type="string")
+     */
+    public $password = null;
+}</code></pre>
+<p>See in all the annotation we have a name property. Every developper use different naming conventions for columns and tables names.</p>
+<div class="alert alert-success">So your code should look like this:</div>
+<pre><code class="language-php">/**
+ * @Entity
+ * @Table
+ *
+ */
+class User
+{
+    /**
+     * @Id @GeneratedValue @Column(type="integer")
+     */
+    private $id = null;
+
+    /**
+     * @Column(type="string")
+     */
+    public $login;
+
+    /**
+     * @Column(type="string")
+     */
+    public $password = null;</code></pre>
+<p>With the above code, the developper will not have to take care about the name of columns and tables names, so they will
+be more efficient and will not have to care about creepy things.</p>
+<div class="alert alert-info">Note: Doctrine provides different naming strategies and let you the possibility to implements 
+your own ones, see <a href="http://doctrine-orm.readthedocs.org/projects/doctrine-orm/en/latest/reference/namingstrategy.html">Doctrine Naming strategies</a></div>
 
                     <p class="fork-and-edit">
                     Found a typo? Something is wrong in this documentation? Just
-                    <a href="https://github.com/thecodingmachine/best-practices/blob/master/index.md">fork and edit it</a>!
+                    <a href="https://github.com/thecodingmachine/best-practices/blob/master/php/librairies/doctrine.md">fork and edit it</a>!
                     </p>
                 </div>
             </div>
