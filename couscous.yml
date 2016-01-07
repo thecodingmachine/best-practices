@@ -43,3 +43,8 @@ menu:
         php-cli:
             text: Scripts and command line
             relativeUrl: php/cli.html
+        php-librairies:
+            text: Librairies
+        php-librairies-doctrine:
+            text: Doctrine
+            relativeUrl: php/librairies/doctrine.html
