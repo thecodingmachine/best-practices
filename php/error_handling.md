@@ -48,9 +48,6 @@ error handling. So instead of returning a status code, your function should not 
 <div class="alert alert-success">So your code should look like this:</div>
 
 ```php
-/**
- * @return bool
- */
 function writeDateInFile() {
     $result = file_put_contents("date", date("Y-m-d"));
     if (!$result) {
