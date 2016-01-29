@@ -330,10 +330,7 @@ if ($result) {
 error handling. So instead of returning a status code, your function should not return anything <strong>but</strong> it should
 <strong>throw an exception</strong> in case something goes wrong.</p>
 <div class="alert alert-success">So your code should look like this:</div>
-<pre><code class="language-php">/**
- * @return bool
- */
-function writeDateInFile() {
+<pre><code class="language-php">function writeDateInFile() {
     $result = file_put_contents("date", date("Y-m-d"));
     if (!$result) {
         throw new FileWriteException("There was a problem writing file 'date'");
