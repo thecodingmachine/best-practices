@@ -8,7 +8,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Defensive programming | TheCodingMachine Best practices</title>
+    <title>Curated list of packages | TheCodingMachine Best practices</title>
 
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -190,7 +190,7 @@
                                                 Development environment
                                             </a>
                                         </li>
-                                                                                                                                                <li class="active visible-xs-block">
+                                                                                                                                                <li class=" visible-xs-block">
                                             <a href="http://bestpractices.thecodingmachine.com/php/defensive_programming.html">
                                                 Defensive programming
                                             </a>
@@ -220,7 +220,7 @@
                                                 Scripts and command line
                                             </a>
                                         </li>
-                                                                                                                                                                                                                    <li class=" visible-xs-block">
+                                                                                                                                                                                                                    <li class="active visible-xs-block">
                                             <a href="http://bestpractices.thecodingmachine.com/librairies/curated_list.html">
                                                 Curated list of libraries
                                             </a>
@@ -256,7 +256,7 @@
                                                         Development environment
                                                     </a>
                                                 </li>
-                                                                                                                                                                                <li class="active">
+                                                                                                                                                                                <li class="">
                                                     <a href="http://bestpractices.thecodingmachine.com/php/defensive_programming.html">
                                                         Defensive programming
                                                     </a>
@@ -289,7 +289,7 @@
                                                                                                                                                                                 <li>
                                                     <h4>Librairies</h4>
                                                 </li>
-                                                                                                                                                                                <li class="">
+                                                                                                                                                                                <li class="active">
                                                     <a href="http://bestpractices.thecodingmachine.com/librairies/curated_list.html">
                                                         Curated list of libraries
                                                     </a>
@@ -309,156 +309,34 @@
                 </aside>
 
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 content">
-                    <h1>Defensive programming <small>PHP Best practices</small></h1>                    <p>This series of tips is dedicated to strengthening your code.</p>
-<h2 id="always-check-for-unexpected-values">Always check for unexpected values</h2>
-<p><span class="label label-success pull-right">Beginner</span></p>
-<h3 id="rule">Rule</h3>
-<div class="alert alert-info">Your <code>switch</code> statements should always have a <code>default</code>.</div>
-<h3 id="explanation">Explanation</h3>
-<p>Just imagine you have a function that does some processing on an article, based on its status. Its status
-can be &quot;active&quot;, &quot;pending&quot; or &quot;inactive&quot;</p>
-<div class="alert alert-danger">What you should NOT do:</div>
-<pre><code class="language-php">function doStuff($status) {
-    switch ($status) {
-        case "active":
-            // Do some stuff
-            break;
-        case "pending":
-            // Do some stuff
-            break;
-        case "inactive":
-            // Do some stuff
-            break;
-    }
-}</code></pre>
-<p>But in the future, what if a new status is added, like &quot;archived&quot;? How long will it take before you notice?</p>
-<div class="alert alert-success">So your code should look like this:</div>
-<pre><code class="language-php">function doStuff($status) {
-    switch ($status) {
-        case "active":
-            // Do some stuff
-            break;
-        case "pending":
-            // Do some stuff
-            break;
-        case "inactive":
-            // Do some stuff
-            break;
-        default:
-            // This is good! In case an unexpected status is sent, you will notice
-            throw InvalidStatusException(sprintf("Unknown Status '%s'", $status));
-    }
-}</code></pre>
-<p>By adding a <code>default</code> statement that throws an exception, you are sure to notice if something goes wrong in the future.</p>
-<div class="alert alert-info">Note: this rule also applies for long series of <code>if</code>, <code>elseif</code>
-statements without a final <code>else</code>.</div>
-<h2 id="use-constants">Use constants</h2>
-<p><span class="label label-success pull-right">Beginner</span></p>
-<h3 id="rule-1">Rule</h3>
-<div class="alert alert-info">Constants should be stored in classes using the <code>const</code> keyword.</div>
-<p>Avoid using the <code>define</code> keyword for constants.</p>
-<h3 id="explanation-1">Explanation</h3>
-<div class="alert alert-danger">What you should NOT do:</div>
-<pre><code class="language-php">function doStuff($status) {
-    switch ($status) {
-        case "active":
-            // Do some stuff
-            break;
-        case "pending":
-            // Do some stuff
-            break;
-        case "inactive":
-            // Do some stuff
-            break;
-        default:
-            throw InvalidStatusException(sprintf("Unknown Status '%s'", $status));
-    }
-}</code></pre>
-<div class="alert alert-success">What you should do instead:</div>
-<pre><code class="language-php">class StatusEnum
-{
-    const ACTIVE = "active";
-    const PENDING = "pending";
-    const INACTIVE = "inactive";
-}</code></pre>
-<pre><code class="language-php">function doStuff($status) {
-    switch ($status) {
-        case StatusEnum::ACTIVE:
-            // Do some stuff
-            break;
-        case StatusEnum::PENDING:
-            // Do some stuff
-            break;
-        case StatusEnum::INACTIVE:
-            // Do some stuff
-            break;
-        default:
-            throw InvalidStatusException(sprintf("Unknown Status '%s'", $status));
-    }
-}</code></pre>
-<p>By storing the list of possible statuses in a class, the IDE will offer autocompletion on your enumeration class.
-Furthermore, you cannot misspell a status in your code. If a status is removed from the class, you will get an error
-if you try to access it (so your code will fail instead of silently ignoring the error, which is good).</p>
-<p>You should use <code>const</code> instead of <code>define</code> because:</p>
+                    <h1>Curated list of packages <small>Packages we like</small></h1>                    <p>This page contains a list of packages that we often use at TheCodingMachine and that we like (a lot).</p>
+<h2 id="php-libraries">PHP libraries</h2>
+<h3 id="http-client-libraries">HTTP client libraries</h3>
+<p>Using cURL? Stop right there! cURL is hard to use. Error handling is poor (no exceptions, you have to check for errors manually), and there are a number of tricks one has to know to successfully use it (ask anyone who tried to do HTTPS with cURL).</p>
+<p>You definitely want to use a &quot;wrapper&quot; around cURL that will make your life easier (we call that an &quot;HTTP Client&quot;).</p>
+<p>Libraries:</p>
 <ul>
-<li>it allows grouping constants into classes: your code is more organized and self describing</li>
-<li>classes can be autoloaded: you don't need to include a file containing all <code>define</code> statements for each request
-so your code is more efficient</li>
+<li><a href="http://docs.guzzlephp.org/en/latest/">Guzzle (6+)</a></li>
+<li><a href="https://github.com/php-http/httplug">HTTPlug</a> : an abstraction library on top of Guzzle. Use this (and this only) if you are writing a library meant to be used in several projects</li>
 </ul>
-<h2 id="use-an-enumeration-library">Use an enumeration library</h2>
-<p><span class="label label-danger pull-right">Pro</span></p>
-<h3 id="rule-2">Rule</h3>
-<p>This is an improvement over the previous rules:</p>
-<div class="alert alert-info">Consider using an enumeration library (like 
-<a href="https://github.com/myclabs/php-enum">myclabs/php-enum</a>) to manage your enumeration classes.</div>
-<h3 id="explanation-2">Explanation</h3>
-<p>Thanks to an enumeration library, you can type hint your enumerations. This is a useful type check that makes
-your code more robust and simpler:</p>
-<pre><code class="language-php">use MyCLabs\Enum\Enum;
-
-class StatusEnum extends Enum
-{
-    const ACTIVE = "active";
-    const PENDING = "pending";
-    const INACTIVE = "inactive";
-}</code></pre>
-<pre><code class="language-php">// Please notice the type hinting on StatusEnum
-function doStuff(StatusEnum $status) {
-    if ($status == StatusEnum::ACTIVE()) {
-        // Do stuff
-    }
-}
-
-// Function call looks like this:
-doStuff(StatusEnum::ACTIVE());</code></pre>
-<p>Using an enum library, rather than referring to the constant directly, you call a static function that has the
-same name as the constant. So instead of doing <code>StatusEnum::ACTIVE</code>, you write <code>StatusEnum::ACTIVE()</code>. The <code>ACTIVE()</code>
-static method will return an instance of the <code>StatusEnum</code> class that represents the constant. Therefore, you can
-type hint on it.</p>
-<p>Your code is safer and simpler. Now, no one can call the <code>doStuff</code> method without passing a valid status, so you don't need
-to check that in your method!</p>
-<h2 id="the-yoda-condition">The Yoda condition</h2>
-<p><span class="label label-success pull-right">Padawan</span></p>
-<h3 id="rule-3">Rule</h3>
-<div class="alert alert-info">When doing logical comparisons, always put the variable on the right side, constants or literals on the left.</div>
-<h3 id="explanation-3">Explanation</h3>
-<div class="alert alert-danger">What you should NOT do:</div>
-<pre><code class="language-php">if ( $theForce == true ) {
-    $victorious = youWill( $be );
-}</code></pre>
-<p>Imagine that you omit an equal sign in the above code. The assignment would be perfectly valid, returning <code>1</code>,
-causing the <code>if</code> statement to evaluate to <code>true</code>, and you could be chasing that bug for a while.</p>
-<div class="alert alert-success">So your code should look like this:</div>
-<pre><code class="language-php">if ( true == $theForce ) {
-    $victorious = youWill( $be );
-}</code></pre>
-<p>If you omit an equal sign you’ll get a parse error, because you can’t assign to a constant like <code>true</code></p>
-<div class="alert alert-info">Note: this rule also applies to <code>==</code>, <code>!=</code>, <code>===</code>, and <code>!==</code>. 
-Yoda conditions for <code>&lt;</code>, <code> &gt; </code>, <code>&lt;=</code> or <code>&gt;=</code> are significantly more difficult to read and are best avoided.</div>
+<h3 id="file-system-access">File system access</h3>
+<p>Need to access the file system? Think <code>fopen</code> and <code>fwrite</code> is enough? Think twice. Error handling is poorly done (no exceptions) and you might enjoy using a wrapper that will handle a lot of the tiny details onemust think about when accessing files.</p>
+<p>Libraries:</p>
+<ul>
+<li><a href="http://symfony.com/doc/current/components/filesystem.html">symfony/filesystem</a>: a battle-tested tiny lib on top of common file system functions.</li>
+<li><a href="https://flysystem.thephpleague.com/">The PHP league's flysystem</a>: an abstraction library to easily swap out a local filesystem for a remote one. Think about accessing files using FTP, AWS S3, or Dropbox as easily as local files.</li>
+</ul>
+<h3 id="sending-mails">Sending mails</h3>
+<p>Do not use PHP's <code>mail</code> function. It does a very poor job at sending HTML mails or attachments. Instead, rely on a solid mail library that does the job.</p>
+<p>Libraries:</p>
+<ul>
+<li><a href="http://swiftmailer.org/">Swift mailer</a>: an elegant object-oriented library to send emails</li>
+<li><a href="https://github.com/thecodingmachine/swift-twig-mail-template">thecodingmachine/swift-twig-mail-template</a>: a bridge to easily turn Twig templates into Swift messages</li>
+</ul>
 
                     <p class="fork-and-edit">
                     Found a typo? Something is wrong in this documentation? Just
-                    <a href="https://github.com/thecodingmachine/best-practices/blob/master/php/defensive_programming.md">fork and edit it</a>!
+                    <a href="https://github.com/thecodingmachine/best-practices/blob/master/libraries/curated_list.md">fork and edit it</a>!
                     </p>
                 </div>
             </div>
