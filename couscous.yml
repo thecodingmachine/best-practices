@@ -45,6 +45,9 @@ menu:
             relativeUrl: php/cli.html
         php-librairies:
             text: Librairies
+        curated-list:
+            text: Curated list of libraries
+            relativeUrl: librairies/curated_list.html
         php-librairies-doctrine:
             text: Doctrine
             relativeUrl: php/librairies/doctrine.html
