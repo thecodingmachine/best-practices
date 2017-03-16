@@ -37,3 +37,8 @@ Libraries:
 - [Swift mailer](http://swiftmailer.org/): an elegant object-oriented library to send emails
 - [thecodingmachine/swift-twig-mail-template](https://github.com/thecodingmachine/swift-twig-mail-template): a bridge to easily turn Twig templates into Swift messages
 
+### Image manipulation
+
+You often need to display the same image using many resolutions (full size, thumbnails) and ratios (square, landscape or portrait). Worst thing to do would be loading the original (uploaded) image and resize or crop it using CSS, whitch will result in very low network performances. Also avoid developping your own "image preset manipulation" library.
+- [ThePHPLeague's Glide](http://glide.thephpleague.com) : API is exposed via HTTP, ex : ```<img src="kayaks.jpg?w=300&h=300&fit=crop">```
+- [Mouf's awsome MoufImage package](https://github.com/thecodingmachine/utils.graphics.mouf-imagine) : A Mouf wrapper around the [Imagine](https://github.com/avalanche123/Imagine) library. You can define URLs for each image preset inside Mouf.
