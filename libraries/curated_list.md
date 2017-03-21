@@ -59,7 +59,7 @@ Re-implementing bootstrap, materialize form validation, or custom controls like 
    - [Angular material](https://material.angularjs.org/latest/) or [v2](https://github.com/angular/material2)
    - [vue-material](https://github.com/marcosmoura/vue-material)
    - [react-materialize](https://github.com/react-materialize/react-materialize)
- - Zurb Fondation
+ - Zurb Foundation
    - [angular-foundation-6](https://github.com/circlingthesun/angular-foundation-6)
    - ...
    
