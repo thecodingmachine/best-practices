@@ -52,8 +52,8 @@ Libraries:
 Re-implementing bootstrap, materialize form validation, or custom controls like datepickers, sliders, etc. is a wast of time and energy. You should be able implementations of Bootstrap, Materialize or Foundation for the main JS frameworks / libraries :
 
  - Bootstrap : 
-  - [AngularUI](https://angular-ui.github.io/bootstrap/) or [ng-bootstrap](https://ng-bootstrap.github.io/#/home)
-  - [vue-strap](https://github.com/yuche/vue-strap) for vue.js 1 and bootstrap 3, or [bootstrap-vue](https://bootstrap-vue.github.io/) for newer versions
-  - [react-bootstrap](https://github.com/react-bootstrap/react-bootstrap)
- - 
+   - [AngularUI](https://angular-ui.github.io/bootstrap/) or [ng-bootstrap](https://ng-bootstrap.github.io/#/home)
+   - [vue-strap](https://github.com/yuche/vue-strap) for vue.js 1 and bootstrap 3, or [bootstrap-vue](https://bootstrap-vue.github.io/) for newer versions
+   - [react-bootstrap](https://github.com/react-bootstrap/react-bootstrap)
+ - Materialize : 
    
