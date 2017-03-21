@@ -45,3 +45,15 @@ Libraries:
 
 - [ThePHPLeague's Glide](http://glide.thephpleague.com) : API is exposed via HTTP, ex : ```<img src="kayaks.jpg?w=300&h=300&fit=crop">```
 - [Mouf's awesome MoufImagine package](https://github.com/thecodingmachine/utils.graphics.mouf-imagine) : A Mouf wrapper around the [Imagine](https://github.com/avalanche123/Imagine) library. You can define URLs for each image preset inside Mouf.
+
+### FrontEnd libraries
+
+#### CSS integration with JS frameworks & libraries (AngularJS, Vue.js or Rect, ...)
+Re-implementing bootstrap, materialize form validation, or custom controls like datepickers, sliders, etc. is a wast of time and energy. You should be able implementations of Bootstrap, Materialize or Foundation for the main JS frameworks / libraries :
+
+ - Bootstrap : 
+  - [AngularUI](https://angular-ui.github.io/bootstrap/) or [ng-bootstrap](https://ng-bootstrap.github.io/#/home)
+  - [vue-strap](https://github.com/yuche/vue-strap) for vue.js 1 and bootstrap 3, or [bootstrap-vue](https://bootstrap-vue.github.io/) for newer versions
+  - [react-bootstrap](https://github.com/react-bootstrap/react-bootstrap)
+ - 
+   
