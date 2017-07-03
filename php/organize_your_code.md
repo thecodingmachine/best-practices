@@ -86,10 +86,10 @@ class ProductController
     }
 
     /**
-     * This is a sample action based on Splash 7, but this could as well be used in any framework.
+     * This is a sample action based on Splash 8, but this could as well be used in any framework.
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         $productId = $request->getParams()['product_id'];
         // Let's get the product from database
         $sql = 'SELECT name, price FROM products WHERE id = ?';
@@ -132,10 +132,10 @@ class ProductController
     }
 
     /**
-     * This is a sample action based on Splash 7, but this could as well be used in any framework.
+     * This is a sample action based on Splash 8, but this could as well be used in any framework.
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         // The controller is in charge of extracting the parameters from the request.
         $productId = $request->getParams()['product_id'];
         // The product is fetched from the appropriate service
@@ -187,7 +187,7 @@ class ProductController
     /**
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         // NO! You don't access the $_GET superglobal anymore.
         $productId = $_GET['product_id'];
 
@@ -206,7 +206,7 @@ class ProductController
     /**
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         // Yes! we use the $request object to access the GET parameters.
         $productId = $request->getParams()['product_id'];
 
@@ -235,7 +235,7 @@ class ProductController
     /**
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         // NO! Do not pass the request to a service or a DAO
         $product = $this->productRepository->getProductById($request);
 
@@ -258,7 +258,7 @@ class ProductController
     /**
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         // The controller is in charge of extracting the parameters from the request.
         $productId = $request->getParams()['product_id'];
         // The service only takes the necessary parameters
@@ -296,14 +296,14 @@ class ProductController
     /**
      * @URL /products
      */
-    public function ajaxGetProducts(ServiceRequestInterface $request) {
+    public function ajaxGetProducts(ServerRequestInterface $request): ResponseInterface {
         return $this->productRepository->getProductList();
     }
 }
 
 class ProductRepository
 {
-    public function getProductList() {
+    public function getProductList(): ResponseInterface {
         $products = [];
         // Query products in databases
         // ...
@@ -324,7 +324,7 @@ class ProductController
     /**
      * @URL /products
      */
-    public function ajaxGetProducts(ServiceRequestInterface $request) {
+    public function ajaxGetProducts(ServerRequestInterface $request): ResponseInterface {
         // YES! The controller is encoding data in JSON
         // Moreover, it is doing so using a JsonResponse object.
         return new JsonResponse($this->productRepository->getProductList());
@@ -333,7 +333,10 @@ class ProductController
 
 class ProductRepository
 {
-    public function getProductList() {
+    /**
+     * @return Product[]
+     */
+    public function getProductList(): array {
         $products = [];
         // Query products in databases
         // ...

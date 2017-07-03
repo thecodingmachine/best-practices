@@ -22,7 +22,7 @@ you know that your class is always in a "valid" state.
 class MyService {
     private $logger;
     
-    public function setLogger(LoggerInterface $logger) {
+    public function setLogger(LoggerInterface $logger): void {
         $this->logger = $logger;
     }
 
@@ -55,7 +55,7 @@ class MyService {
         $this->logger = $logger;
     }
 
-    private function doStuff() {
+    private function doStuff(): void {
         // ...
         $this->logger->info('Hello world!');
     }
@@ -88,7 +88,7 @@ class MyMailer {
         $this->logger = $logger;
     }
 
-    private function sendMail(Mail $mail) {
+    private function sendMail(Mail $mail): void {
         // Do stuff that actually sends the mail...
         // ...
         if ($this->logger) {
@@ -124,7 +124,7 @@ class MyMailer {
         $this->logger = $logger;
     }
 
-    private function sendMail(Mail $mail) {
+    private function sendMail(Mail $mail): void {
         // ...
         $this->logger->info('Mail successfully sent.');
     }
@@ -205,7 +205,7 @@ class Customer {
         $this->createTime = $createTime;
     }
     
-    public function getCreateTime() {
+    public function getCreateTime(): DateTimeImmutable {
         return $this->createTime;
     }
 }
@@ -218,7 +218,7 @@ Because we are using type-hinting, there is no way a developer using our class c
 Please do not write those yourself. Your IDE should be able to write getters and setters for you
 (and if it cannot, consider changing your IDE).</div>
 
-- PHPStorms supports generating getters and setters out of the box.
+- PHPStorm supports generating getters and setters out of the box.
 - Eclipse PDT has [extensions allowing generating getters and setters too](http://p2-dev.pdt-extensions.org/phpfeatures.html)
 - ...
 
@@ -252,7 +252,7 @@ array without reading the code or reading the documentation (assuming the docume
 class Table {
     // ...
     
-    public function __construct(array $rows, $borderWidth = 0, $borderColumn = "red", /*, ...*/) {
+    public function __construct(array $rows, int $borderWidth = 0, string $borderColumn = "red", /*, ...*/) {
         // ...
     }
 }
@@ -281,7 +281,7 @@ class Configuration {
     }
     
     // Optional parameters go in setters
-    public function setBorderWidth($borderWidth) {
+    public function setBorderWidth(int $borderWidth) {
         $this->borderWidth = $borderWidth;
     }
     
@@ -294,7 +294,7 @@ This has a number of advantages:
 - The developer using your code cannot create an object without passing all the requested parameters
 - Your IDE can provide auto-completion on setters.
 
-##Use type-hinting, as much as possible
+## Use type-hinting, as much as possible
 <span class="label label-success pull-right">Beginner</span>
 
 ### Rule 
@@ -345,8 +345,74 @@ class MyMailer {
 With the code above, developers calling your constructor MUST pass a `LoggerInterface` to the `$logger` parameter. 
 Otherwise, PHP will report an error.
 
-Type-hint on the interface, not the implementation
---------------------------------------------------
+<div class="alert alert-info">From PHP7+, you should of course use
+strict mode and provide a return type for all your methods.</div>
+
+<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/blob/master/doc/typehinting_rules.md">thecodingmachine/phpstan-strict-rules</a> package.</div>
+
+## Write beautiful PHPDoc
+<span class="label label-success pull-right">Beginner</span>
+
+### Rule 
+
+<div class="alert alert-info">If you cannot use a type-hint, then you must document it in a docblock.
+Please add <a href="https://en.wikipedia.org/wiki/PHPDoc">PHPDoc</a> to your code <em>if it provides additional information</em>.
+In particular, please detail the content of arrays using the <code>Object[]</code> notation.
+If you are coding with a legacy PHP 5.x application, please also provide <code>@return</code> statements.</div>
+
+### Explanation
+
+Many tools can read the PHPDoc and help you with it.
+
+- Your IDE can read it and provide auto-completion based on it
+- [Mouf](http://mouf-php.com) offers a drag'n'drop interface for instances based on PHPDoc
+- [Scrutinizer](http://scrutinizer-ci.com/) performs a number of type checks based on PHPDoc
+
+<div class="alert alert-success">You should be sure to use the `Object[]` notation in addition to an `array` type-hint to explain what kind of object is expected.</div>
+
+```php
+/**
+ * @param User[] $users
+ */
+public function sendSubscriptionMails(array $users) {
+    foreach ($users as $user) {
+        $user->getEma... // Here the IDE will be able to provide autocompletion on the $user variable based on the PHPDoc 
+    }
+}
+```
+
+<div class="alert alert-warning">Avoid docblocks with no value</div>
+
+You don't need to add PHPDoc for the sake of adding PHPDoc if it provides no additional value.
+
+```php
+/**
+ * Sets the product.
+ *
+ * @param Product $product
+ */
+public function setProduct(Product $product): void
+```
+
+The PHPDoc block above is useless. It provides no additional value for the developer.
+
+<div class="alert alert-success">Only add PHPDoc when you have something to say that matters</div>
+
+If all your comments actually matter, there is a bigger chance that developers using your code will actually read them.
+
+```php
+/**
+ * @param Product[] $products An array of products **indexed by product ID**
+ */
+public function setProducts(array $products): void 
+```
+
+The comment above is interesting as it informs the developer that the array must be indexed by product ID.
+The comment is meaningful. Strive for that!
+
+<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/blob/master/doc/typehinting_rules.md">thecodingmachine/phpstan-strict-rules</a> package.</div>
+
+## Type-hint on the interface, not the implementation
 <span class="label label-danger pull-right">Pro</span>
 
 ### Rule 
@@ -404,7 +470,7 @@ manipulating services, or when you are designing reusable packages. Creating an 
 and if you are absolutely positive that this interface will never be implemented more than once (for instance
 if you are manipulating business objects or entities), it can be acceptable to type-hint on the class directly.</div>
 
-##Avoid passing IDs to methods when you can pass objects
+## Avoid passing IDs to methods when you can pass objects
 <span class="label label-success pull-right">Beginner</span>
 
 ### Rule 
@@ -481,54 +547,6 @@ class TodoService {
 
 Yes, you will need to retrieve the `$user` object first, but until you are facing a performance problem, this code 
 is more robust and safer. Also, please consider that some ORM tools have a capability for lazy-loading objects.
-For instance, TDBM can return an instance of the `User` object without performing any call to the database. The call 
+For instance, [TDBM](https://github.com/thecodingmachine/tdbm) can return an instance of the `User` object without performing any call to the database. The call 
 is performed only when needed. So in the end, passing the `User` object could be as fast, and of course, it is 
 more reliable.
-
-##Write beautiful PHPDoc
-<span class="label label-success pull-right">Beginner</span>
-
-### Rule 
-
-<div class="alert alert-info">When designing a method, please write the <a href="https://en.wikipedia.org/wiki/PHPDoc">PHPDoc</a> that go with it.
-Especially, please provide a <code>@return</code> statement and please detail the content of arrays using the
-<code>Object[]</code> notation.</div>
-
-### Explanation
-
-Many tools can read the PHPDoc and help you with it.
-
-- Your IDE can read it and provide auto-completion based on it
-- [Mouf](http://mouf-php.com) offers a drag'n'drop interface for instances based on PHPDoc
-- [Scrutinizer](http://scrutinizer-ci.com/) performs a number of type checks based on PHPDoc
-
-In particular, you should be sure to:
-
-- use `@return` statements to specify the kind of objects returned by a method
-- use `Object[]` notation instead of `array` to explain what kind of object is expected.
-
-```php
-/**
- * @param User[] $users
- */
-public function sendSubscriptionMails(array $users) {
-    foreach ($users as $user) {
-        $user->getEma... // Here the IDE will be able to provide autocompletion on the $user variable based on the PHPDoc 
-    }
-}
-
-/**
- * @param int $id
- * @return User
- */
-public function getUser($id) {
-    // Do stuff
-    return $user;
-}
-
-$user = getUser(12);
-$user->getEma... // Thanks to the @return PHPDoc annotation, an IDE will be able to autocomplete the $user variable.
-```
-
-<div class="alert alert-info"><strong>Heads up!</strong> If you are using PHP7, you should of course use
-strict mode and provide a return type for all your methods.</div>

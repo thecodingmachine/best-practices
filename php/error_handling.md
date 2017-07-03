@@ -18,7 +18,7 @@ currentMenu: php-exceptions
 /**
  * @return bool
  */
-function writeDateInFile() {
+function writeDateInFile(): void {
     $result = file_put_contents("date", date("Y-m-d"));
     if ($result) {
         return true;
@@ -48,7 +48,7 @@ error handling. So instead of returning a status code, your function should not 
 <div class="alert alert-success">So your code should look like this:</div>
 
 ```php
-function writeDateInFile() {
+function writeDateInFile(): void {
     $result = file_put_contents("date", date("Y-m-d"));
     if (!$result) {
         throw new FileWriteException("There was a problem writing file 'date'");
@@ -68,7 +68,7 @@ function writeDateInFile() {
 <div class="alert alert-danger">What you should NOT do:</div>
 
 ```php
-function writeDateInFile() {
+function writeDateInFile(): void {
     $data = $this->dao->getSomeData();
     $result = file_put_contents("date", json_encode($data));
     if (!$result) {
@@ -95,7 +95,7 @@ Please note that your class does not need to contain any code. It just needs to 
 Now, your code looks like this:
 
 ```php
-function writeDataInFile() {
+function writeDataInFile(): void {
     $data = $this->dao->getSomeData();
     $result = file_put_contents("date", json_encode($data));
     if (!$result) {
@@ -114,6 +114,7 @@ try {
 }
 ```
 
+<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/">thecodingmachine/phpstan-strict-rules</a> package.</div>
 
 ## Fail early, fail loud
 <span class="label label-success pull-right">Beginner</span>
@@ -127,7 +128,7 @@ fail loudly (with a big error message) rather than trying to hide what is going 
 <div class="alert alert-danger">What you should NOT do:</div>
 
 ```php
-function doClevelStuff() {
+function doClevelStuff(): void {
     try {
         $results = $this->db->makeRequest("SELECT ...[insert complex SQL here] ");
         // ... Do stuff
@@ -269,3 +270,5 @@ try {
 This is good. The third parameter to the `Exception` constructor is another exception (the one that triggered this
 exception). Most loggers and error reporting tools will show you both exceptions, so you will have a very detailed
 view of what is going wrong.
+
+<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/">thecodingmachine/phpstan-strict-rules</a> package.</div>
