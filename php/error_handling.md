@@ -114,6 +114,7 @@ try {
 }
 ```
 
+<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/">thecodingmachine/phpstan-strict-rules</a> package.</div>
 
 ## Fail early, fail loud
 <span class="label label-success pull-right">Beginner</span>
@@ -269,3 +270,5 @@ try {
 This is good. The third parameter to the `Exception` constructor is another exception (the one that triggered this
 exception). Most loggers and error reporting tools will show you both exceptions, so you will have a very detailed
 view of what is going wrong.
+
+<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/">thecodingmachine/phpstan-strict-rules</a> package.</div>
