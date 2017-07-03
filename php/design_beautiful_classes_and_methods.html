@@ -568,7 +568,7 @@ If you are coding with a legacy PHP 5.x application, please also provide <code>@
 <li><a href="http://mouf-php.com">Mouf</a> offers a drag'n'drop interface for instances based on PHPDoc</li>
 <li><a href="http://scrutinizer-ci.com/">Scrutinizer</a> performs a number of type checks based on PHPDoc</li>
 </ul>
-<div class="alert alert-success">You should be sure to use the `Object[]` notation in addition to an `array` type-hint to explain what kind of object is expected.</div>
+<div class="alert alert-success">You should be sure to use the <code>Object[]</code> notation in addition to an <code>array</code> type-hint to explain what kind of object is expected.</div>
 <pre><code class="language-php">/**
  * @param User[] $users
  */
@@ -587,13 +587,13 @@ public function sendSubscriptionMails(array $users) {
 public function setProduct(Product $product): void</code></pre>
 <p>The PHPDoc block above is useless. It provides no additional value for the developer.</p>
 <div class="alert alert-success">Only add PHPDoc when you have something to say that matters</div>
-<p>If all your comments actually matter, there is a bigger chance that developers using your code will actually read them.</p>
 <pre><code class="language-php">/**
  * @param Product[] $products An array of products **indexed by product ID**
  */
 public function setProducts(array $products): void </code></pre>
 <p>The comment above is interesting as it informs the developer that the array must be indexed by product ID.
 The comment is meaningful. Strive for that!</p>
+<p>If all your comments actually matter, there is a bigger chance that developers using your code will actually read them.</p>
 <div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/blob/master/doc/typehinting_rules.md">thecodingmachine/phpstan-strict-rules</a> package.</div>
 <h2 id="type-hint-on-the-interface-not-the-implementation">Type-hint on the interface, not the implementation</h2>
 <p><span class="label label-danger pull-right">Pro</span></p>
