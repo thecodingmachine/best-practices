@@ -368,7 +368,7 @@ Many tools can read the PHPDoc and help you with it.
 - [Mouf](http://mouf-php.com) offers a drag'n'drop interface for instances based on PHPDoc
 - [Scrutinizer](http://scrutinizer-ci.com/) performs a number of type checks based on PHPDoc
 
-<div class="alert alert-success">You should be sure to use the `Object[]` notation in addition to an `array` type-hint to explain what kind of object is expected.</div>
+<div class="alert alert-success">You should be sure to use the <code>Object[]</code> notation in addition to an <code>array</code> type-hint to explain what kind of object is expected.</div>
 
 ```php
 /**
@@ -398,8 +398,6 @@ The PHPDoc block above is useless. It provides no additional value for the devel
 
 <div class="alert alert-success">Only add PHPDoc when you have something to say that matters</div>
 
-If all your comments actually matter, there is a bigger chance that developers using your code will actually read them.
-
 ```php
 /**
  * @param Product[] $products An array of products **indexed by product ID**
@@ -409,6 +407,8 @@ public function setProducts(array $products): void
 
 The comment above is interesting as it informs the developer that the array must be indexed by product ID.
 The comment is meaningful. Strive for that!
+
+If all your comments actually matter, there is a bigger chance that developers using your code will actually read them.
 
 <div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/blob/master/doc/typehinting_rules.md">thecodingmachine/phpstan-strict-rules</a> package.</div>
 
