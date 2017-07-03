@@ -318,7 +318,7 @@
 <pre><code class="language-php">/**
  * @return bool
  */
-function writeDateInFile() {
+function writeDateInFile(): void {
     $result = file_put_contents("date", date("Y-m-d"));
     if ($result) {
         return true;
@@ -339,7 +339,7 @@ if ($result) {
 error handling. So instead of returning a status code, your function should not return anything <strong>but</strong> it should
 <strong>throw an exception</strong> in case something goes wrong.</p>
 <div class="alert alert-success">So your code should look like this:</div>
-<pre><code class="language-php">function writeDateInFile() {
+<pre><code class="language-php">function writeDateInFile(): void {
     $result = file_put_contents("date", date("Y-m-d"));
     if (!$result) {
         throw new FileWriteException("There was a problem writing file 'date'");
@@ -352,7 +352,7 @@ error handling. So instead of returning a status code, your function should not 
 <strong>extending</strong> the <code>Exception</code> class or using one of the available sub-classes.</div>
 <h3 id="explanation-1">Explanation</h3>
 <div class="alert alert-danger">What you should NOT do:</div>
-<pre><code class="language-php">function writeDateInFile() {
+<pre><code class="language-php">function writeDateInFile(): void {
     $data = $this-&gt;dao-&gt;getSomeData();
     $result = file_put_contents("date", json_encode($data));
     if (!$result) {
@@ -369,7 +369,7 @@ class FileWritingException extends \Exception {
 }</code></pre>
 <p>Please note that your class does not need to contain any code. It just needs to extend the <code>Exception</code> class.</p>
 <p>Now, your code looks like this:</p>
-<pre><code class="language-php">function writeDataInFile() {
+<pre><code class="language-php">function writeDataInFile(): void {
     $data = $this-&gt;dao-&gt;getSomeData();
     $result = file_put_contents("date", json_encode($data));
     if (!$result) {
@@ -382,6 +382,7 @@ class FileWritingException extends \Exception {
 } catch (FileWritingException $e) {
     // Do some specific stuff if we have problems with disk writing. 
 }</code></pre>
+<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/">thecodingmachine/phpstan-strict-rules</a> package.</div>
 <h2 id="fail-early-fail-loud">Fail early, fail loud</h2>
 <p><span class="label label-success pull-right">Beginner</span></p>
 <h3 id="rule-2">Rule</h3>
@@ -389,7 +390,7 @@ class FileWritingException extends \Exception {
 fail loudly (with a big error message) rather than trying to hide what is going wrong.</div>
 <h3 id="explanation-2">Explanation</h3>
 <div class="alert alert-danger">What you should NOT do:</div>
-<pre><code class="language-php">function doClevelStuff() {
+<pre><code class="language-php">function doClevelStuff(): void {
     try {
         $results = $this-&gt;db-&gt;makeRequest("SELECT ...[insert complex SQL here] ");
         // ... Do stuff
@@ -485,6 +486,7 @@ is that you have a new <code>MyServiceException</code> that is not very helpful.
 <p>This is good. The third parameter to the <code>Exception</code> constructor is another exception (the one that triggered this
 exception). Most loggers and error reporting tools will show you both exceptions, so you will have a very detailed
 view of what is going wrong.</p>
+<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/">thecodingmachine/phpstan-strict-rules</a> package.</div>
 
                     <p class="fork-and-edit">
                     Found a typo? Something is wrong in this documentation? Just

@@ -375,10 +375,10 @@ a product and its price. The price is stored without VAT in database and the app
     }
 
     /**
-     * This is a sample action based on Splash 7, but this could as well be used in any framework.
+     * This is a sample action based on Splash 8, but this could as well be used in any framework.
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         $productId = $request-&gt;getParams()['product_id'];
         // Let's get the product from database
         $sql = 'SELECT name, price FROM products WHERE id = ?';
@@ -417,10 +417,10 @@ processed in dedicated classes (and moreover, the developer should consider usin
     }
 
     /**
-     * This is a sample action based on Splash 7, but this could as well be used in any framework.
+     * This is a sample action based on Splash 8, but this could as well be used in any framework.
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         // The controller is in charge of extracting the parameters from the request.
         $productId = $request-&gt;getParams()['product_id'];
         // The product is fetched from the appropriate service
@@ -463,7 +463,7 @@ This request object can be used to access GET and POST parameters.</p>
     /**
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         // NO! You don't access the $_GET superglobal anymore.
         $productId = $_GET['product_id'];
 
@@ -478,7 +478,7 @@ This request object can be used to access GET and POST parameters.</p>
     /**
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         // Yes! we use the $request object to access the GET parameters.
         $productId = $request-&gt;getParams()['product_id'];
 
@@ -499,7 +499,7 @@ This request object can be used to access GET and POST parameters.</p>
     /**
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         // NO! Do not pass the request to a service or a DAO
         $product = $this-&gt;productRepository-&gt;getProductById($request);
 
@@ -517,7 +517,7 @@ to be independent from the context in which they run.</p>
     /**
      * @URL /get_product
      */
-    public function ajaxGetProductAction(ServiceRequestInterface $request) {
+    public function ajaxGetProductAction(ServerRequestInterface $request): ResponseInterface {
         // The controller is in charge of extracting the parameters from the request.
         $productId = $request-&gt;getParams()['product_id'];
         // The service only takes the necessary parameters
@@ -545,14 +545,14 @@ is usually taken by the controller (or by the view if HTML is returned) </p>
     /**
      * @URL /products
      */
-    public function ajaxGetProducts(ServiceRequestInterface $request) {
+    public function ajaxGetProducts(ServerRequestInterface $request): ResponseInterface {
         return $this-&gt;productRepository-&gt;getProductList();
     }
 }
 
 class ProductRepository
 {
-    public function getProductList() {
+    public function getProductList(): ResponseInterface {
         $products = [];
         // Query products in databases
         // ...
@@ -569,7 +569,7 @@ class ProductRepository
     /**
      * @URL /products
      */
-    public function ajaxGetProducts(ServiceRequestInterface $request) {
+    public function ajaxGetProducts(ServerRequestInterface $request): ResponseInterface {
         // YES! The controller is encoding data in JSON
         // Moreover, it is doing so using a JsonResponse object.
         return new JsonResponse($this-&gt;productRepository-&gt;getProductList());
@@ -578,7 +578,10 @@ class ProductRepository
 
 class ProductRepository
 {
-    public function getProductList() {
+    /**
+     * @return Product[]
+     */
+    public function getProductList(): array {
         $products = [];
         // Query products in databases
         // ...
