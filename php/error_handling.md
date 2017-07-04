@@ -18,7 +18,7 @@ currentMenu: php-exceptions
 /**
  * @return bool
  */
-function writeDateInFile(): void {
+function writeDateInFile(): bool {
     $result = file_put_contents("date", date("Y-m-d"));
     if ($result) {
         return true;
