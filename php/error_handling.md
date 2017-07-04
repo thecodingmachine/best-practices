@@ -15,9 +15,6 @@ currentMenu: php-exceptions
 <div class="alert alert-danger">What you should NOT do:</div>
 
 ```php
-/**
- * @return bool
- */
 function writeDateInFile(): bool {
     $result = file_put_contents("date", date("Y-m-d"));
     if ($result) {
@@ -81,7 +78,7 @@ Why is this bad? Because you are preventing the developer to catch specific prob
 Look at the code above. The `getSomeData` method could also throw an exception that the developer using
 your function might not want to catch.
 
-<div class="alert alert-success">So instead, you should consider creating your own exception or using an exception for the SPL library:</div>
+<div class="alert alert-success">So instead, you should consider creating your own exception or using an exception from the SPL library:</div>
 
 ```php
 namespace My\Namespace;
@@ -128,7 +125,7 @@ fail loudly (with a big error message) rather than trying to hide what is going 
 <div class="alert alert-danger">What you should NOT do:</div>
 
 ```php
-function doClevelStuff(): void {
+function doCleverStuff(): void {
     try {
         $results = $this->db->makeRequest("SELECT ...[insert complex SQL here] ");
         // ... Do stuff
@@ -148,7 +145,7 @@ An SQL error is not a runtime error, it is a design error. So if there is a desi
 <div class="alert alert-success">Instead, the correct code is:</div>
 
 ```php
-function doClevelStuff() {
+function doCleverStuff() {
     $results = $this->db->makeRequest("SELECT ...[insert complex SQL here] ");
     // ... Do stuff
 }
