@@ -14,7 +14,7 @@ currentMenu: php-beautiful-classes-and-methods
 ### Explanation
 
 The constructor is called when your class is created. If you pass the compulsory parameters to the constructor,
-you know that your class is always in a "valid" state.
+you know that your instance is always in a "valid" state.
 
 <div class="alert alert-danger">What you should NOT do:</div>
 
