@@ -48,7 +48,7 @@ Libraries:
 
 ### FrontEnd libraries
 
-#### CSS integration with JS frameworks & libraries (AngularJS, Vue.js or Rect, ...)
+#### CSS integration with JS frameworks & libraries (AngularJS, Vue.js or React, ...)
 Re-implementing bootstrap, materialize form validation, or custom controls like datepickers, sliders, etc. is a wast of time and energy. You should be able implementations of Bootstrap, Materialize or Foundation for the main JS frameworks / libraries :
 
  - Bootstrap : 
