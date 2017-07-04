@@ -315,10 +315,7 @@
 <div class="alert alert-info">When writing a function, you should throw exceptions for error management instead of returning a boolean.</div>
 <h3 id="explanation">Explanation</h3>
 <div class="alert alert-danger">What you should NOT do:</div>
-<pre><code class="language-php">/**
- * @return bool
- */
-function writeDateInFile(): bool {
+<pre><code class="language-php">function writeDateInFile(): bool {
     $result = file_put_contents("date", date("Y-m-d"));
     if ($result) {
         return true;
@@ -362,7 +359,7 @@ error handling. So instead of returning a status code, your function should not 
 <p>Why is this bad? Because you are preventing the developer to catch specific problems.
 Look at the code above. The <code>getSomeData</code> method could also throw an exception that the developer using
 your function might not want to catch.</p>
-<div class="alert alert-success">So instead, you should consider creating your own exception or using an exception for the SPL library:</div>
+<div class="alert alert-success">So instead, you should consider creating your own exception or using an exception from the SPL library:</div>
 <pre><code class="language-php">namespace My\Namespace;
 
 class FileWritingException extends \Exception {
@@ -390,7 +387,7 @@ class FileWritingException extends \Exception {
 fail loudly (with a big error message) rather than trying to hide what is going wrong.</div>
 <h3 id="explanation-2">Explanation</h3>
 <div class="alert alert-danger">What you should NOT do:</div>
-<pre><code class="language-php">function doClevelStuff(): void {
+<pre><code class="language-php">function doCleverStuff(): void {
     try {
         $results = $this-&gt;db-&gt;makeRequest("SELECT ...[insert complex SQL here] ");
         // ... Do stuff
@@ -404,7 +401,7 @@ in the SQL), the code is catching the error, logging it... and that's it!</p>
 An SQL error is not a runtime error, it is a design error. So if there is a design error, there is a bug.
 <strong>And you don't catch bugs. Never.</strong></p>
 <div class="alert alert-success">Instead, the correct code is:</div>
-<pre><code class="language-php">function doClevelStuff() {
+<pre><code class="language-php">function doCleverStuff() {
     $results = $this-&gt;db-&gt;makeRequest("SELECT ...[insert complex SQL here] ");
     // ... Do stuff
 }</code></pre>
