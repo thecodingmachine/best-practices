@@ -321,7 +321,7 @@ $article = $entityManager-&gt;find('CMS\Article', 1234);
 $article-&gt;setHeadline('Hello World dude!');
 $entityManager-&gt;persist($article);
 $entityManager-&gt;flush()</code></pre>
-<p>When you get an entity from the database, it's already managed by Doctrine. You don't have to persist it again. I will not create
+<p>When you get an entity from the database, it's already managed by Doctrine. You don't have to persist it again. It will not create
 any errors or bugs but you will add useless code in your project.</p>
 <div class="alert alert-success">Only persist new entity:</div>
 <pre><code class="language-php">&lt;?php
