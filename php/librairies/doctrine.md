@@ -23,7 +23,7 @@ $entityManager->persist($article);
 $entityManager->flush()
 ```
 
-When you get an entity from the database, it's already managed by Doctrine. You don't have to persist it again. I will not create
+When you get an entity from the database, it's already managed by Doctrine. You don't have to persist it again. It will not create
 any errors or bugs but you will add useless code in your project.
 <div class="alert alert-success">Only persist new entity:</div>
 
