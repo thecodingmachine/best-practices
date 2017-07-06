@@ -43,11 +43,11 @@ menu:
         php-cli:
             text: Scripts and command line
             relativeUrl: php/cli.html
-        php-librairies:
-            text: Librairies
+        php-libraries:
+            text: Libraries
         curated-list:
             text: Curated list of libraries
             relativeUrl: libraries/curated_list.html
-        php-librairies-doctrine:
+        php-libraries-doctrine:
             text: Doctrine
-            relativeUrl: php/librairies/doctrine.html
+            relativeUrl: php/libraries/doctrine.html
