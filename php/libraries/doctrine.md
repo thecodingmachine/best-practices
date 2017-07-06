@@ -20,7 +20,7 @@ persist entities that are already managed by Doctrine.</div>
 $article = $entityManager->find('CMS\Article', 1234);
 $article->setHeadline('Hello World dude!');
 $entityManager->persist($article);
-$entityManager->flush()
+$entityManager->flush();
 ```
 
 When you get an entity from the database, it's already managed by Doctrine. You don't have to persist it again. It will not create
