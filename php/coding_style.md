@@ -25,3 +25,4 @@ for you. Run PHP-CS-Fixer <strong>before any commit you plan to do</strong>.</di
 
 **Tip:** install PHP-CS-Fixer globally using Composer. You will be able to use it on any project, anywhere in the
 project tree.
+Some IDEs like PHPStorm already have a CS-Fixer implemented.
