@@ -165,7 +165,7 @@ Instead, use the request object of your framework.</div>
 ###Explanation
 
 Each MVC framework comes with a **request** object. Modern frameworks should [share a common
- request object has it has been defined in PSR-7 compatible one](http://www.php-fig.org/psr/psr-7/).
+ request object as it has been defined in PSR-7 compatible one](http://www.php-fig.org/psr/psr-7/).
 This request object can be used to access GET and POST parameters.
 
 You should use it instead of accessing `$_GET`, `$_POST` or `$_REQUEST` directly.
