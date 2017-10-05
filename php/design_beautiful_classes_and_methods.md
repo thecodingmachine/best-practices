@@ -26,7 +26,7 @@ class MyService {
         $this->logger = $logger;
     }
 
-    private function doStuff() {
+    public function doStuff() {
         // ...
         $this->logger->info('Hello world!');
     }
