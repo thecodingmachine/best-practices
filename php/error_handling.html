@@ -409,7 +409,7 @@ probably be caught by your MVC framework that will display a nice HTTP 500 page,
 If your framework does not provide you with a nice error page, consider switching to another framework. Or use
 <a href="http://filp.github.io/whoops/">Whoops, a nice error reporting library</a>.</p>
 <p>In general, there are very few cases where you will want to catch an exception. This is because exceptions are thrown
-when someting goes seriously wrong and generally, there is nothing you can do to fix it:</p>
+when something goes seriously wrong and generally, there is nothing you can do to fix it:</p>
 <ul>
 <li>Your database is not reachable? There is usually nothing your program can do to fix this</li>
 <li>Your application does not have rights to write in a directory? There is usually nothing your program can do to fix this</li>
@@ -418,7 +418,8 @@ when someting goes seriously wrong and generally, there is nothing you can do to
 </ul>
 <p>See? Most exceptions are meant to bubble up, so do not catch them!</p>
 <p>So unless you are writing an error handler, or rethrowing the exception, you should always carefully consider what
-exceptions you want to catch and never try to catch the <code>Exception</code> class.</p>
+exceptions you want to catch and never try to catch the <code>Exception</code> class, the <code>Throwable</code> interface or the
+<code>RuntimeException</code> class (<code>RuntimeException</code> is supposed to be used for unrecoverable exceptions).</p>
 <div class="alert alert-danger">Bad:</div>
 <pre><code class="language-php">try {
     // ...
