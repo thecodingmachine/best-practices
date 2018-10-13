@@ -192,6 +192,7 @@ try {
 }
 ```
 
+<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/blob/master/doc/typehinting_rules.md">thecodingmachine/phpstan-strict-rules</a> package.</div>
 
 ## Always log exceptions with the stacktrace
 <span class="label label-warning pull-right">Intermediate</span>

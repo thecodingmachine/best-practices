@@ -64,6 +64,8 @@ By adding a `default` statement that throws an exception, you are sure to notice
 <div class="alert alert-info">Note: this rule also applies for long series of <code>if</code>, <code>elseif</code>
 statements without a final <code>else</code>.</div>
 
+<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/blob/master/doc/typehinting_rules.md">thecodingmachine/phpstan-strict-rules</a> package.</div>
+
 ## Use constants
 <span class="label label-success pull-right">Beginner</span>
 
