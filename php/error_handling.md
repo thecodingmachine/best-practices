@@ -157,7 +157,7 @@ If your framework does not provide you with a nice error page, consider switchin
 [Whoops, a nice error reporting library](http://filp.github.io/whoops/).
 
 In general, there are very few cases where you will want to catch an exception. This is because exceptions are thrown
-when someting goes seriously wrong and generally, there is nothing you can do to fix it:
+when something goes seriously wrong and generally, there is nothing you can do to fix it:
 
 - Your database is not reachable? There is usually nothing your program can do to fix this
 - Your application does not have rights to write in a directory? There is usually nothing your program can do to fix this
@@ -167,7 +167,8 @@ when someting goes seriously wrong and generally, there is nothing you can do to
 See? Most exceptions are meant to bubble up, so do not catch them!
 
 So unless you are writing an error handler, or rethrowing the exception, you should always carefully consider what 
-exceptions you want to catch and never try to catch the `Exception` class.
+exceptions you want to catch and never try to catch the `Exception` class, the `Throwable` interface or the 
+`RuntimeException` class (`RuntimeException` is supposed to be used for unrecoverable exceptions).
 
 <div class="alert alert-danger">Bad:</div>
 
