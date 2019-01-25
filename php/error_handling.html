@@ -337,7 +337,7 @@ error handling. So instead of returning a status code, your function should not 
 <div class="alert alert-success">So your code should look like this:</div>
 <pre><code class="language-php">function writeDateInFile(): void {
     $result = file_put_contents("date", date("Y-m-d"));
-    if (!$result) {
+    if ($result === false) {
         throw new FileWriteException("There was a problem writing file 'date'");
     }
 }</code></pre>
@@ -351,7 +351,7 @@ error handling. So instead of returning a status code, your function should not 
 <pre><code class="language-php">function writeDateInFile(): void {
     $data = $this-&gt;dao-&gt;getSomeData();
     $result = file_put_contents("date", json_encode($data));
-    if (!$result) {
+    if ($result === false) {
         throw new \Exception("Throw some generic exception");
     }
 }</code></pre>
@@ -368,7 +368,7 @@ class FileWritingException extends \Exception {
 <pre><code class="language-php">function writeDataInFile(): void {
     $data = $this-&gt;dao-&gt;getSomeData();
     $result = file_put_contents("date", json_encode($data));
-    if (!$result) {
+    if ($result === false) {
         throw new FileWritingException("Throw my specific exception");
     }
 }</code></pre>
