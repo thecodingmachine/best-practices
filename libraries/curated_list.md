@@ -39,7 +39,7 @@ Libraries:
 
 ### Image manipulation
 
-You often need to display the same image using many resolutions (full size, thumbnails) and ratios (square, landscape or portrait). Worst thing to do would be loading the original (uploaded) image and resize or crop it using CSS, whitch will result in very low network performances. Also avoid developping your own "image preset manipulation" library.
+You often need to display the same image using many resolutions (full size, thumbnails) and ratios (square, landscape or portrait). Worst thing to do would be loading the original (uploaded) image and resize or crop it using CSS, which would result in very low network performances. Also avoid developping your own "image preset manipulation" library.
 
 Libraries:
 
@@ -49,7 +49,7 @@ Libraries:
 ### FrontEnd libraries
 
 #### CSS integration with JS frameworks & libraries (AngularJS, Vue.js or React, ...)
-Re-implementing bootstrap, materialize form validation, or custom controls like datepickers, sliders, etc. is a wast of time and energy. You should be able implementations of Bootstrap, Materialize or Foundation for the main JS frameworks / libraries :
+Re-implementing bootstrap, materialize form validation, or custom controls like datepickers, sliders, etc. is a waste of time and energy. You should be able to use implementations of Bootstrap, Materialize or Foundation for the main JS frameworks / libraries :
 
  - Bootstrap : 
    - [AngularUI](https://angular-ui.github.io/bootstrap/) or [ng-bootstrap](https://ng-bootstrap.github.io/#/home)
