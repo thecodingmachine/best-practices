@@ -47,7 +47,7 @@ error handling. So instead of returning a status code, your function should not 
 ```php
 function writeDateInFile(): void {
     $result = file_put_contents("date", date("Y-m-d"));
-    if (!$result) {
+    if ($result === false) {
         throw new FileWriteException("There was a problem writing file 'date'");
     }
 }
@@ -68,7 +68,7 @@ function writeDateInFile(): void {
 function writeDateInFile(): void {
     $data = $this->dao->getSomeData();
     $result = file_put_contents("date", json_encode($data));
-    if (!$result) {
+    if ($result === false) {
         throw new \Exception("Throw some generic exception");
     }
 }
@@ -95,7 +95,7 @@ Now, your code looks like this:
 function writeDataInFile(): void {
     $data = $this->dao->getSomeData();
     $result = file_put_contents("date", json_encode($data));
-    if (!$result) {
+    if ($result === false) {
         throw new FileWritingException("Throw my specific exception");
     }
 }
