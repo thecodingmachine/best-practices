@@ -437,11 +437,42 @@ static method will return an instance of the <code>StatusEnum</code> class that 
 type hint on it.</p>
 <p>Your code is safer and simpler. Now, no one can call the <code>doStuff</code> method without passing a valid status, so you don't need
 to check that in your method!</p>
+<h2 id="use-an-assertion-library">Use an assertion library</h2>
+<p><span class="label label-danger pull-right">Pro</span></p>
+<h3 id="rule-3">Rule</h3>
+<p>This is an improvement over the &quot;Always check for unexpected values&quot; rules:</p>
+<div class="alert alert-info">Consider using an assertion library (like 
+<a href="https://github.com/beberlei/assert">beberlei/assert</a> or <a href="https://github.com/webmozart/assert">webmozart/assert</a>).</div>
+<h3 id="explanation-3">Explanation</h3>
+<p>An assertion library is a library whose sole goal is to throw an exception if a condition is not met.
+It is very useful to check against <a href="https://en.wikipedia.org/wiki/Postcondition">pre/post conditions</a>.</p>
+<p>It typically contains a <code>Assert</code> class with a large number of assert methods in it.</p>
+<div class="alert alert-danger">Instead of doing:</div>
+<pre><code class="language-php">use Assert\Assertion;
+
+function computeCircleArea(float $radius): float {
+    if ($radius &lt; 0) {
+        throw new \RuntimeException('Radius must be positive');
+    }
+
+    return M_PI * $radius * $radius;
+}</code></pre>
+<div class="alert alert-success">Now you can write:</div>
+<pre><code class="language-php">use Assert\Assertion;
+
+function computeCircleArea(float $radius): float {
+    // Let's be sure the radius is positive
+    Assert::min($radius, 0, 'Radius must be positive');
+
+    return M_PI * $radius * $radius;
+}</code></pre>
+<p>Using an assert library results in code more readable.</p>
+<p>Also, it reduces the cyclomatic complexity of your functions. It results in code that is easier to test (you only test the happy path) and therefore, it is easier to achieve a high code coverage with an assertion library.</p>
 <h2 id="the-yoda-condition">The Yoda condition</h2>
 <p><span class="label label-success pull-right">Padawan</span></p>
-<h3 id="rule-3">Rule</h3>
+<h3 id="rule-4">Rule</h3>
 <div class="alert alert-info">When doing logical comparisons, always put the variable on the right side, constants or literals on the left.</div>
-<h3 id="explanation-3">Explanation</h3>
+<h3 id="explanation-4">Explanation</h3>
 <div class="alert alert-danger">What you should NOT do:</div>
 <pre><code class="language-php">if ( $theForce == true ) {
     $victorious = youWill( $be );
