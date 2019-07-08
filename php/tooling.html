@@ -8,7 +8,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Command line and scripts | TheCodingMachine Best practices</title>
+    <title>Tooling | TheCodingMachine Best practices</title>
 
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -214,7 +214,7 @@
                                                 Coding style
                                             </a>
                                         </li>
-                                                                                                                                                <li class="active visible-xs-block">
+                                                                                                                                                <li class=" visible-xs-block">
                                             <a href="http://bestpractices.thecodingmachine.com/php/cli.html">
                                                 Scripts and command line
                                             </a>
@@ -285,7 +285,7 @@
                                                         Coding style
                                                     </a>
                                                 </li>
-                                                                                                                                                                                <li class="active">
+                                                                                                                                                                                <li class="">
                                                     <a href="http://bestpractices.thecodingmachine.com/php/cli.html">
                                                         Scripts and command line
                                                     </a>
@@ -318,44 +318,63 @@
                 </aside>
 
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 content">
-                    <h1 id="0">Command line and scripts <small>PHP Best practices</small></h1>                    <h2 id="use-a-quotconsolequot-component">Use a &quot;Console&quot; component</h2>
-<p><span class="label label-warning pull-right">Intermediate</span></p>
+                    <h1 id="0">Tooling <small>PHP Best practices</small></h1>                    <p>This section list a number of tools that will help you respecting the best practices. </p>
+<h2 id="use-a-static-analysis-tool">Use a static analysis tool</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
 <h3 id="rule">Rule</h3>
-<div class="alert alert-info">Need to run a PHP script from the command line? Do not execute your PHP files directly.
-Instead, consider using a "Console" component.</div>
+<div class="alert alert-info">Install a static code analyzer in your project like <a href="https://github.com/phpstan/phpstan">PHPStan</a> 
+or <a href="https://psalm.dev/">Psalm</a>.</div>
 <h3 id="explanation">Explanation</h3>
+<p>A static analysis tool can automatically analyze your code base and issue warnings on potential bugs.
+Unlike styling tools (like PHP-CS-Fixer), the static analysis tools actually understand your code by creating a tree like
+representation of all your classes. They can go deep in your code and provide advanced issues reports.</p>
+<p>At TheCodingMachine, we are <a href="https://github.com/phpstan/phpstan#sponsors">proud sponsors of PHPStan</a>. We even
+went as far as designing an extension for PHPStan that actually checks some of the rules described in this very web site.</p>
+<p>Psalm is also known to be a very good static analysis tool and is especially great at checking types. It comes with its
+own generics syntax.</p>
+<h3 id="rule-1">Rule</h3>
+<div class="alert alert-info">If you are using PHPStan, install 
+<a href="https://github.com/thecodingmachine/phpstan-strict-rules">thecodingmachine/phpstan-strict-rules</a> for in-depth best practices checks.</div>
+<h2 id="use-unitintegration-tests">Use unit/integration tests</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-2">Rule</h3>
+<div class="alert alert-info">Write unit tests, for instance using <a href="https://phpunit.de/">PHPUnit</a>.</div>
+<h3 id="explanation-1">Explanation</h3>
+<p>Unit / integration tests are a great way to test your program automatically.</p>
+<p>A whole book could be written on unit tests so rather than writing too few, here is <a href="https://phpunit.de/manual/6.5/en/testing-practices.html">a link to best practices from PHPUnit</a></p>
+<h2 id="use-continuous-integration">Use Continuous Integration</h2>
+<p><span class="label label-success pull-right">Beginner</span></p>
+<h3 id="rule-3">Rule</h3>
+<div class="alert alert-info">Automate the check of static analysis, coding style and unit tests by using a continuous integration server.</div>
+<h3 id="explanation-2">Explanation</h3>
 <div class="alert alert-danger">What you should NOT do:</div>
-<p>You should avoid accessing scripts by running them directly from the PHP CLI: </p>
-<p><strong>my_script.php</strong></p>
-<pre><code class="language-php">#!/usr/bin/php
-&lt;?php
-
-// Your PHP script that you run by typing "php my_script.php"</code></pre>
-<p>Most developers know they should use a MVC framework with a router component instead of directly accessing PHP files
-from the web. When working with scripts triggered from the command line (or from a CRON task), the same rule applies!</p>
-<div class="alert alert-success">So instead, rather than directly accessing your scripts using <code>php my_script.php</code>,
-you should consider using a console component from one of the major frameworks out there.</div>
-<p>Why? Because:</p>
+<p>You should rely on you running your tools manually.
+If you have no automated way to run your tools, here is what will happen:</p>
 <ul>
-<li>You will write object oriented scripts</li>
-<li>You will get a nice interface to access the command line, including utility functions to:
-<ul>
-<li>manage options</li>
-<li>automatically document your script</li>
-<li>colorize your output</li>
-</ul></li>
+<li>At some point in your project, you will have a rush</li>
+<li>You will commit to your repository without running your tools</li>
+<li>After some time, the effort to bring back your code to a correct state will take too much effort</li>
+<li>You will end up abandoning the tools</li>
 </ul>
-<p>Here are a few console components out there:</p>
-<ul>
-<li><a href="http://symfony.com/doc/current/components/console/introduction.html">Symfony console component</a></li>
-<li><a href="http://laravel.com/docs/artisan">Laravel Artisan</a></li>
-</ul>
-<p>At TheCodingMachine, we use <a href="http://mouf-php.com/packages/mouf/utils.console/">Mouf's console</a> which
-is essentially a wrapper around the very nice Symfony console that enables using dependency injection into commands.</p>
+<div class="alert alert-success">Instead, use a continuous integration server integrated with your development environment!</div>
+<p>Each of your changes should be written to a branch. When you open a pull-request on that branch, the CI server will
+automatically run the tools for you and notify you of any problem.</p>
+<p><strong>Note:</strong> of course, your <strong>should</strong> run the tests locally first. It is way faster to run the tests locally that to
+wait for the CI server to kick in and run the tests. The CI server is only here as a last resort.</p>
+<p>There are many CI tools out there. At TheCodingMachine, we use <a href="https://about.gitlab.com/product/continuous-integration/">Gitlab CI</a> that is directly integrated to Gitlab.
+But there are many other tools like <a href="http://travis-ci.org/">Travis</a> (with a generous free plan for open-source projects), <a href="https://jenkins.io/">Jenkins</a>...</p>
+<h2 id="use-static-code-analyzers-in-your-ide">Use static code analyzers in your IDE</h2>
+<p><span class="label label-warning pull-right">Intermediate</span></p>
+<h3 id="rule-4">Rule</h3>
+<div class="alert alert-info">If you are using PHPStorm, we highly recommand using the great 
+<a href="https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-">Php Inspections ​(EA Extended)​</a> extension</div>
+<h3 id="explanation-3">Explanation</h3>
+<p>This extension adds a great number of checks to help you write high quality PHP code.
+Some of the checks are redundant with PHPStan, but you get the chance to view those directly in your IDE while coding.</p>
 
                     <p class="fork-and-edit">
                     Found a typo? Something is wrong in this documentation? Just
-                    <a href="https://github.com/thecodingmachine/best-practices/blob/master/php/cli.md">fork and edit it</a>!
+                    <a href="https://github.com/thecodingmachine/best-practices/blob/master/php/tooling.md">fork and edit it</a>!
                     </p>
                 </div>
             </div>
