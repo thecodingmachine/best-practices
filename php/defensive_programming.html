@@ -332,7 +332,7 @@ can be &quot;active&quot;, &quot;pending&quot; or &quot;inactive&quot;</p>
 }</code></pre>
 <p>But in the future, what if a new status is added, like &quot;archived&quot;? How long will it take before you notice?</p>
 <div class="alert alert-success">So your code should look like this:</div>
-<pre><code class="language-php">function doStuff($status) {
+<pre><code class="language-php">function doStuff(string $status) {
     switch ($status) {
         case "active":
             // Do some stuff
@@ -359,7 +359,7 @@ statements without a final <code>else</code>.</div>
 <p>Avoid using the <code>define</code> keyword for constants.</p>
 <h3 id="explanation-1">Explanation</h3>
 <div class="alert alert-danger">What you should NOT do:</div>
-<pre><code class="language-php">function doStuff($status) {
+<pre><code class="language-php">function doStuff(string $status): void {
     switch ($status) {
         case "active":
             // Do some stuff
@@ -381,7 +381,7 @@ statements without a final <code>else</code>.</div>
     const PENDING = "pending";
     const INACTIVE = "inactive";
 }</code></pre>
-<pre><code class="language-php">function doStuff($status) {
+<pre><code class="language-php">function doStuff(string $status): void {
     switch ($status) {
         case StatusEnum::ACTIVE:
             // Do some stuff
@@ -423,7 +423,7 @@ class StatusEnum extends Enum
     const INACTIVE = "inactive";
 }</code></pre>
 <pre><code class="language-php">// Please notice the type hinting on StatusEnum
-function doStuff(StatusEnum $status) {
+function doStuff(StatusEnum $status): void {
     if ($status == StatusEnum::ACTIVE()) {
         // Do stuff
     }
@@ -470,6 +470,8 @@ function computeCircleArea(float $radius): float {
 <p>Also, it reduces the cyclomatic complexity of your functions. It results in code that is easier to test (you only test the happy path) and therefore, it is easier to achieve a high code coverage with an assertion library.</p>
 <h2 id="the-yoda-condition">The Yoda condition</h2>
 <p><span class="label label-success pull-right">Padawan</span></p>
+<p><strong>Note:</strong> this rule is controversial as it can makes the code harder to read for some people. Feel free to ignore it
+if you feel uncomfortable about it. </p>
 <h3 id="rule-4">Rule</h3>
 <div class="alert alert-info">When doing logical comparisons, always put the variable on the right side, constants or literals on the left.</div>
 <h3 id="explanation-4">Explanation</h3>
