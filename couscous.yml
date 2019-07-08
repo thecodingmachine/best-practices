@@ -43,6 +43,9 @@ menu:
         php-cli:
             text: Scripts and command line
             relativeUrl: php/cli.html
+        php-tooling:
+            text: Tooling
+            relativeUrl: php/tooling.html
         php-libraries:
             text: Libraries
         curated-list:
