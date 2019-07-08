@@ -182,6 +182,54 @@ type hint on it.
 Your code is safer and simpler. Now, no one can call the `doStuff` method without passing a valid status, so you don't need
 to check that in your method!
 
+## Use an assertion library
+<span class="label label-danger pull-right">Pro</span>
+
+### Rule 
+
+This is an improvement over the "Always check for unexpected values" rules:
+
+<div class="alert alert-info">Consider using an assertion library (like 
+<a href="https://github.com/beberlei/assert">beberlei/assert</a> or <a href="https://github.com/webmozart/assert">webmozart/assert</a>).</div>
+
+### Explanation
+
+An assertion library is a library whose sole goal is to throw an exception if a condition is not met.
+It is very useful to check against [pre/post conditions](https://en.wikipedia.org/wiki/Postcondition).
+
+It typically contains a `Assert` class with a large number of assert methods in it.
+
+<div class="alert alert-danger">Instead of doing:</div>
+
+```php
+use Assert\Assertion;
+
+function computeCircleArea(float $radius): float {
+    if ($radius < 0) {
+        throw new \RuntimeException('Radius must be positive');
+    }
+
+    return M_PI * $radius * $radius;
+}
+```
+
+<div class="alert alert-success">Now you can write:</div>
+
+```php
+use Assert\Assertion;
+
+function computeCircleArea(float $radius): float {
+    // Let's be sure the radius is positive
+    Assert::min($radius, 0, 'Radius must be positive');
+
+    return M_PI * $radius * $radius;
+}
+```
+
+Using an assert library results in code more readable.
+
+Also, it reduces the cyclomatic complexity of your functions. It results in code that is easier to test (you only test the happy path) and therefore, it is easier to achieve a high code coverage with an assertion library.
+
 ## The Yoda condition 
 <span class="label label-success pull-right">Padawan</span>
 
