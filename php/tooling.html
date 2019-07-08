@@ -327,14 +327,14 @@ or <a href="https://psalm.dev/">Psalm</a>.</div>
 <h3 id="explanation">Explanation</h3>
 <p>A static analysis tool can automatically analyze your code base and issue warnings on potential bugs.
 Unlike styling tools (like PHP-CS-Fixer), the static analysis tools actually understand your code by creating a tree like
-representation of all your classes. They can go deep in your code and provide advanced issues reports.</p>
-<p>At TheCodingMachine, we are <a href="https://github.com/phpstan/phpstan#sponsors">proud sponsors of PHPStan</a>. We even
+representation of all your classes. They can go deep in your code, understand the type of each variable and provide advanced reports.</p>
+<p>At TheCodingMachine, we are the <a href="https://github.com/phpstan/phpstan#sponsors">proud sponsors of PHPStan</a>. We even
 went as far as designing an extension for PHPStan that actually checks some of the rules described in this very web site.</p>
-<p>Psalm is also known to be a very good static analysis tool and is especially great at checking types. It comes with its
-own generics syntax.</p>
 <h3 id="rule-1">Rule</h3>
 <div class="alert alert-info">If you are using PHPStan, install 
 <a href="https://github.com/thecodingmachine/phpstan-strict-rules">thecodingmachine/phpstan-strict-rules</a> for in-depth best practices checks.</div>
+<p>Psalm is also known to be a very good static analysis tool and is especially great at checking types. It comes with its
+own generics syntax.</p>
 <h2 id="use-unitintegration-tests">Use unit/integration tests</h2>
 <p><span class="label label-success pull-right">Beginner</span></p>
 <h3 id="rule-2">Rule</h3>
@@ -345,10 +345,10 @@ own generics syntax.</p>
 <h2 id="use-continuous-integration">Use Continuous Integration</h2>
 <p><span class="label label-success pull-right">Beginner</span></p>
 <h3 id="rule-3">Rule</h3>
-<div class="alert alert-info">Automate the check of static analysis, coding style and unit tests by using a continuous integration server.</div>
+<div class="alert alert-info">Automate running your tools (static analysis, coding style and unit tests) by using a continuous integration server.</div>
 <h3 id="explanation-2">Explanation</h3>
 <div class="alert alert-danger">What you should NOT do:</div>
-<p>You should rely on you running your tools manually.
+<p>You should never trust <strong>you</strong> running your tools manually.
 If you have no automated way to run your tools, here is what will happen:</p>
 <ul>
 <li>At some point in your project, you will have a rush</li>
@@ -359,7 +359,7 @@ If you have no automated way to run your tools, here is what will happen:</p>
 <div class="alert alert-success">Instead, use a continuous integration server integrated with your development environment!</div>
 <p>Each of your changes should be written to a branch. When you open a pull-request on that branch, the CI server will
 automatically run the tools for you and notify you of any problem.</p>
-<p><strong>Note:</strong> of course, your <strong>should</strong> run the tests locally first. It is way faster to run the tests locally that to
+<p><strong>Note:</strong> of course, you <strong>should</strong> run the tests locally first. It is way faster to run the tests locally that to
 wait for the CI server to kick in and run the tests. The CI server is only here as a last resort.</p>
 <p>There are many CI tools out there. At TheCodingMachine, we use <a href="https://about.gitlab.com/product/continuous-integration/">Gitlab CI</a> that is directly integrated to Gitlab.
 But there are many other tools like <a href="http://travis-ci.org/">Travis</a> (with a generous free plan for open-source projects), <a href="https://jenkins.io/">Jenkins</a>...</p>
