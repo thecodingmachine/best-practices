@@ -41,7 +41,7 @@ But in the future, what if a new status is added, like "archived"? How long will
 <div class="alert alert-success">So your code should look like this:</div>
 
 ```php
-function doStuff($status) {
+function doStuff(string $status) {
     switch ($status) {
         case "active":
             // Do some stuff
@@ -80,7 +80,7 @@ Avoid using the `define` keyword for constants.
 <div class="alert alert-danger">What you should NOT do:</div>
 
 ```php
-function doStuff($status) {
+function doStuff(string $status): void {
     switch ($status) {
         case "active":
             // Do some stuff
@@ -109,7 +109,7 @@ class StatusEnum
 ```
 
 ```php
-function doStuff($status) {
+function doStuff(string $status): void {
     switch ($status) {
         case StatusEnum::ACTIVE:
             // Do some stuff
@@ -164,7 +164,7 @@ class StatusEnum extends Enum
 
 ```php
 // Please notice the type hinting on StatusEnum
-function doStuff(StatusEnum $status) {
+function doStuff(StatusEnum $status): void {
     if ($status == StatusEnum::ACTIVE()) {
         // Do stuff
     }
@@ -184,6 +184,9 @@ to check that in your method!
 
 ## The Yoda condition 
 <span class="label label-success pull-right">Padawan</span>
+
+**Note:** this rule is controversial as it can makes the code harder to read for some people. Feel free to ignore it
+if you feel uncomfortable about it. 
 
 ### Rule 
 
