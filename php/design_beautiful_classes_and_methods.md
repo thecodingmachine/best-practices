@@ -348,7 +348,7 @@ Otherwise, PHP will report an error.
 <div class="alert alert-info">From PHP7+, you should of course use
 strict mode and provide a return type for all your methods.</div>
 
-<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using the <a href="https://github.com/thecodingmachine/phpstan-strict-rules/">thecodingmachine/phpstan-strict-rules</a> package.</div>
+<div class="alert alert-info"><strong>Heads up!</strong> You can enforce this rule using <a href="https://phpstan.org/">PhpStan at level 6 minimum</a>.</div>
 
 ## Write beautiful PHPDoc
 <span class="label label-success pull-right">Beginner</span>
