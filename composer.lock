@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "ec7d09c8362698ae147f67d08dc52074",
+    "content-hash": "5e27fc04b4d3b7e7bab190c0b0e982f1",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -31,7 +31,7 @@
                 "MIT"
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
-            "time": "2014-12-30 15:22:37"
+            "time": "2014-12-30T15:22:37+00:00"
         },
         {
             "name": "couscous/couscous",
@@ -78,21 +78,28 @@
             "license": [
                 "MIT"
             ],
-            "time": "2015-09-13 21:37:42"
+            "time": "2015-09-13T21:37:42+00:00"
         },
         {
             "name": "erusev/parsedown",
-            "version": "1.5.4",
+            "version": "1.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "0e89e3714bda18973184d30646306bb0a482bd96"
+                "reference": "cb17b6477dfff935958ba01325f2e8a2bfa6dab3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/0e89e3714bda18973184d30646306bb0a482bd96",
-                "reference": "0e89e3714bda18973184d30646306bb0a482bd96",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/cb17b6477dfff935958ba01325f2e8a2bfa6dab3",
+                "reference": "cb17b6477dfff935958ba01325f2e8a2bfa6dab3",
                 "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35"
             },
             "type": "library",
             "autoload": {
@@ -117,7 +124,11 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-08-03 09:24:05"
+            "support": {
+                "issues": "https://github.com/erusev/parsedown/issues",
+                "source": "https://github.com/erusev/parsedown/tree/1.7.x"
+            },
+            "time": "2019-12-30T22:54:17+00:00"
         },
         {
             "name": "erusev/parsedown-extra",
@@ -161,7 +172,7 @@
                 "parsedown",
                 "parser"
             ],
-            "time": "2015-01-25 14:52:34"
+            "time": "2015-01-25T14:52:34+00:00"
         },
         {
             "name": "mnapoli/front-yaml",
@@ -195,7 +206,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2015-03-09 09:51:07"
+            "time": "2015-03-09T09:51:07+00:00"
         },
         {
             "name": "phine/exception",
@@ -244,7 +255,7 @@
             "keywords": [
                 "exception"
             ],
-            "time": "2013-08-27 17:43:25"
+            "time": "2013-08-27T17:43:25+00:00"
         },
         {
             "name": "phine/observer",
@@ -295,7 +306,7 @@
             "keywords": [
                 "observer"
             ],
-            "time": "2013-12-17 23:50:08"
+            "time": "2013-12-17T23:50:08+00:00"
         },
         {
             "name": "phine/path",
@@ -347,7 +358,7 @@
                 "path",
                 "system"
             ],
-            "time": "2013-10-15 22:58:04"
+            "time": "2013-10-15T22:58:04+00:00"
         },
         {
             "name": "phine/phar",
@@ -403,7 +414,7 @@
             "keywords": [
                 "phar"
             ],
-            "time": "2013-12-18 00:12:41"
+            "time": "2013-12-18T00:12:41+00:00"
         },
         {
             "name": "php-di/invoker",
@@ -446,7 +457,7 @@
                 "invoke",
                 "invoker"
             ],
-            "time": "2015-09-12 09:14:11"
+            "time": "2015-09-12T09:14:11+00:00"
         },
         {
             "name": "php-di/php-di",
@@ -503,7 +514,7 @@
                 "dependency injection",
                 "di"
             ],
-            "time": "2015-09-08 08:56:29"
+            "time": "2015-09-08T08:56:29+00:00"
         },
         {
             "name": "php-di/phpdoc-reader",
@@ -540,7 +551,7 @@
                 "phpdoc",
                 "reflection"
             ],
-            "time": "2015-06-01 14:23:20"
+            "time": "2015-06-01T14:23:20+00:00"
         },
         {
             "name": "psr/log",
@@ -578,7 +589,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2012-12-21T11:40:51+00:00"
         },
         {
             "name": "symfony/console",
@@ -635,7 +646,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-09-03 11:40:38"
+            "time": "2015-09-03T11:40:38+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -684,7 +695,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2015-08-27 07:03:44"
+            "time": "2015-08-27T07:03:44+00:00"
         },
         {
             "name": "symfony/finder",
@@ -733,7 +744,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2015-08-26 17:56:37"
+            "time": "2015-08-26T17:56:37+00:00"
         },
         {
             "name": "symfony/process",
@@ -782,7 +793,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2015-08-27 06:45:45"
+            "time": "2015-08-27T06:45:45+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -831,7 +842,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-08-24 07:13:45"
+            "time": "2015-08-24T07:13:45+00:00"
         },
         {
             "name": "twig/twig",
@@ -892,7 +903,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-09-15 06:50:16"
+            "time": "2015-09-15T06:50:16+00:00"
         }
     ],
     "packages-dev": [],
@@ -902,5 +913,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
 }
