@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "ec7d09c8362698ae147f67d08dc52074",
+    "content-hash": "5e27fc04b4d3b7e7bab190c0b0e982f1",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -31,7 +31,7 @@
                 "MIT"
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
-            "time": "2014-12-30 15:22:37"
+            "time": "2014-12-30T15:22:37+00:00"
         },
         {
             "name": "couscous/couscous",
@@ -78,7 +78,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2015-09-13 21:37:42"
+            "time": "2015-09-13T21:37:42+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -117,7 +117,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-08-03 09:24:05"
+            "time": "2015-08-03T09:24:05+00:00"
         },
         {
             "name": "erusev/parsedown-extra",
@@ -161,7 +161,7 @@
                 "parsedown",
                 "parser"
             ],
-            "time": "2015-01-25 14:52:34"
+            "time": "2015-01-25T14:52:34+00:00"
         },
         {
             "name": "mnapoli/front-yaml",
@@ -195,7 +195,7 @@
             "license": [
                 "MIT"
             ],
-            "time": "2015-03-09 09:51:07"
+            "time": "2015-03-09T09:51:07+00:00"
         },
         {
             "name": "phine/exception",
@@ -244,7 +244,7 @@
             "keywords": [
                 "exception"
             ],
-            "time": "2013-08-27 17:43:25"
+            "time": "2013-08-27T17:43:25+00:00"
         },
         {
             "name": "phine/observer",
@@ -295,7 +295,7 @@
             "keywords": [
                 "observer"
             ],
-            "time": "2013-12-17 23:50:08"
+            "time": "2013-12-17T23:50:08+00:00"
         },
         {
             "name": "phine/path",
@@ -347,7 +347,7 @@
                 "path",
                 "system"
             ],
-            "time": "2013-10-15 22:58:04"
+            "time": "2013-10-15T22:58:04+00:00"
         },
         {
             "name": "phine/phar",
@@ -403,7 +403,7 @@
             "keywords": [
                 "phar"
             ],
-            "time": "2013-12-18 00:12:41"
+            "time": "2013-12-18T00:12:41+00:00"
         },
         {
             "name": "php-di/invoker",
@@ -446,7 +446,7 @@
                 "invoke",
                 "invoker"
             ],
-            "time": "2015-09-12 09:14:11"
+            "time": "2015-09-12T09:14:11+00:00"
         },
         {
             "name": "php-di/php-di",
@@ -503,7 +503,7 @@
                 "dependency injection",
                 "di"
             ],
-            "time": "2015-09-08 08:56:29"
+            "time": "2015-09-08T08:56:29+00:00"
         },
         {
             "name": "php-di/phpdoc-reader",
@@ -540,7 +540,7 @@
                 "phpdoc",
                 "reflection"
             ],
-            "time": "2015-06-01 14:23:20"
+            "time": "2015-06-01T14:23:20+00:00"
         },
         {
             "name": "psr/log",
@@ -578,7 +578,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2012-12-21T11:40:51+00:00"
         },
         {
             "name": "symfony/console",
@@ -635,7 +635,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-09-03 11:40:38"
+            "time": "2015-09-03T11:40:38+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -684,7 +684,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2015-08-27 07:03:44"
+            "time": "2015-08-27T07:03:44+00:00"
         },
         {
             "name": "symfony/finder",
@@ -733,7 +733,89 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2015-08-26 17:56:37"
+            "time": "2015-08-26T17:56:37+00:00"
+        },
+        {
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.25.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "30885182c981ab175d4d034db0f6f469898070ab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/30885182c981ab175d4d034db0f6f469898070ab",
+                "reference": "30885182c981ab175d4d034db0f6f469898070ab",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "provide": {
+                "ext-ctype": "*"
+            },
+            "suggest": {
+                "ext-ctype": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.23-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.25.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-10-20T20:35:02+00:00"
         },
         {
             "name": "symfony/process",
@@ -782,7 +864,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2015-08-27 06:45:45"
+            "time": "2015-08-27T06:45:45+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -831,38 +913,42 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-08-24 07:13:45"
+            "time": "2015-08-24T07:13:45+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v1.22.1",
+            "version": "v1.44.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "b7fc2469fa009897871fb95b68237286fc54a5ad"
+                "reference": "ae39480f010ef88adc7938503c9b02d3baf2f3b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/b7fc2469fa009897871fb95b68237286fc54a5ad",
-                "reference": "b7fc2469fa009897871fb95b68237286fc54a5ad",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ae39480f010ef88adc7938503c9b02d3baf2f3b3",
+                "reference": "ae39480f010ef88adc7938503c9b02d3baf2f3b3",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.7"
+                "php": ">=7.2.5",
+                "symfony/polyfill-ctype": "^1.8"
             },
             "require-dev": {
-                "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~2.7"
+                "psr/container": "^1.0",
+                "symfony/phpunit-bridge": "^4.4.9|^5.0.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.22-dev"
+                    "dev-master": "1.44-dev"
                 }
             },
             "autoload": {
                 "psr-0": {
                     "Twig_": "lib/"
+                },
+                "psr-4": {
+                    "Twig\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -877,22 +963,35 @@
                     "role": "Lead Developer"
                 },
                 {
+                    "name": "Twig Team",
+                    "role": "Contributors"
+                },
+                {
                     "name": "Armin Ronacher",
                     "email": "armin.ronacher@active-4.com",
                     "role": "Project Founder"
-                },
-                {
-                    "name": "Twig Team",
-                    "homepage": "http://twig.sensiolabs.org/contributors",
-                    "role": "Contributors"
                 }
             ],
             "description": "Twig, the flexible, fast, and secure template language for PHP",
-            "homepage": "http://twig.sensiolabs.org",
+            "homepage": "https://twig.symfony.com",
             "keywords": [
                 "templating"
             ],
-            "time": "2015-09-15 06:50:16"
+            "support": {
+                "issues": "https://github.com/twigphp/Twig/issues",
+                "source": "https://github.com/twigphp/Twig/tree/v1.44.6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/twig/twig",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-11-25T13:31:46+00:00"
         }
     ],
     "packages-dev": [],
@@ -902,5 +1001,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
 }
