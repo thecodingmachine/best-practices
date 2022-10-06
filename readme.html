@@ -320,9 +320,23 @@
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 content">
                                         <h1 id="thecodingmachine-best-practices">TheCodingMachine Best practices</h1>
 <p>This repository contains the best coding practice website of TheCodingMachine.</p>
-<p>Website URL is <a href="http://bestpractices.thecodingmachine.com">http://bestpractices.thecodingmachine.com</a></p>
+<p>Website URL is <a href="https://bestpractices.thecodingmachine.com">https://bestpractices.thecodingmachine.com</a></p>
 <p>The website is statically generated using <a href="http://couscous.io">Couscous</a>.</p>
 <p>Find a typo or an error? Do not hesitate to submit a pull-request.</p>
+<h2 id="how-to-contribute">How to contribute</h2>
+<h3 id="setup">Setup</h3>
+<p>The site generation is working under PHP 8.1 and Node 16.</p>
+<p>You will need to install bower and gulp using the following commands:</p>
+<pre><code>npm install -g bower gulp</code></pre>
+<p>Then, install the dependencies:</p>
+<pre><code>composer install
+npm install
+bower install</code></pre>
+<h3 id="run-the-website-locally">Run the website locally</h3>
+<p>Compile the assets:</p>
+<pre><code>gulp</code></pre>
+<p>Then run the website locally with:</p>
+<pre><code>vendor/bin/couscous preview</code></pre>
 
                     <p class="fork-and-edit">
                     Found a typo? Something is wrong in this documentation? Just
