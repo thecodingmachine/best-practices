@@ -1,0 +1,24 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - uses: php-actions/composer@v6
+      - name: Install js dependencies
+        run: |
+          npm install
+          npm install -g bower
+          npm install -g gulp
+          bower install
+          gulp
+
+      - uses: CouscousPHP/GitHub-Action@v1
