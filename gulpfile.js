@@ -116,20 +116,10 @@ gulp.task('rimraf', function() {
 });
 
 // Default task
-gulp.task('default', function() {
-    gulp.start('css');
-    gulp.start('js');
-    gulp.start('images');
-    //gulp.start('fonts');
-});
+gulp.task('default', gulp.parallel('css', 'js', 'images', /*'fonts',*/));
 
 // Petit Chaton ! Chaton, chaton...
-gulp.task('chaton', function() {
-    gulp.start('css');
-    gulp.start('js');
-    gulp.start('images');
-    //gulp.start('fonts');
-});
+gulp.task('chaton', gulp.parallel('css', 'js', 'images', /*'fonts',*/));
 
 // Watch
 gulp.task('watch', function() {
