@@ -8,7 +8,7 @@
         "gulp-less": "^3.0.1",
         "gulp-livereload": "^4.0.2",
         "gulp-minify-css": "^0.3.6",
-        "gulp-notify": "^1.4.0",
+        "gulp-notify": "^4.0.0",
         "gulp-rimraf": "^0.1.0",
         "gulp-uglify": "^0.3.1"
     }
