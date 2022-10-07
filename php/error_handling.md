@@ -154,7 +154,7 @@ function doCleverStuff() {
 See how this is easier? If an exception is thrown because there is a problem in the SQL, it will bubble up. It will
 probably be caught by your MVC framework that will display a nice HTTP 500 page, with a nice stacktrace.
 If your framework does not provide you with a nice error page, consider switching to another framework. Or use 
-[Whoops, a nice error reporting library](http://filp.github.io/whoops/).
+[Whoops, a nice error reporting library](https://filp.github.io/whoops/).
 
 In general, there are very few cases where you will want to catch an exception. This is because exceptions are thrown
 when something goes seriously wrong and generally, there is nothing you can do to fix it:
@@ -226,7 +226,7 @@ try {
 }
 ```
 
-You are using a [PSR-3 compatible logger, right?](http://www.php-fig.org/psr/psr-3/) The PSR-3 states that you can pass an exception to the logger in the
+You are using a [PSR-3 compatible logger, right?](https://www.php-fig.org/psr/psr-3/) The PSR-3 states that you can pass an exception to the logger in the
  `exception` key of the context array. By doing so, your logger will be allowed to log the stacktrace. If an exception
  is ever thrown, you will have the complete stack-trace and you will know where in the code it was triggered.
 

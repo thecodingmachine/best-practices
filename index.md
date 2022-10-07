@@ -4,7 +4,7 @@ TheCodingMachine Best practices
 Why this website?
 -----------------
 
-At [TheCodingMachine](http://www.thecodingmachine.com) we write code. We read code too... a lot. This is because
+At [TheCodingMachine](https://www.thecodingmachine.com) we write code. We read code too... a lot. This is because
  we use GIT and "pull-requests". For each project, the code has to be reviewed by someone before being pushed
  to the main branch. Very often, code reviewers are making the same comments, over and over. Hence the idea
  to create a website about our best practices.

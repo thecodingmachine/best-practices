@@ -16,7 +16,7 @@ You definitely want to use a "wrapper" around cURL that will make your life easi
 
 Libraries:
 
-- [Guzzle (6+)](http://docs.guzzlephp.org/en/latest/)
+- [Guzzle (6+)](https://docs.guzzlephp.org/en/latest/)
 - [HTTPlug](https://github.com/php-http/httplug) : an abstraction library on top of Guzzle. Use this (and this only) if you are writing a library meant to be used in several projects
 
 ### File system access

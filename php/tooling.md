@@ -72,7 +72,8 @@ automatically run the tools for you and notify you of any problem.
  wait for the CI server to kick in and run the tests. The CI server is only here as a last resort.
 
 There are many CI tools out there. At TheCodingMachine, we use [Gitlab CI](https://about.gitlab.com/product/continuous-integration/) that is directly integrated to Gitlab.
-But there are many other tools like [Travis](http://travis-ci.org/) (with a generous free plan for open-source projects), [Jenkins](https://jenkins.io/)...
+An other great CI Tools is [GitHub Actions](https://github.com/features/actions).
+But there are many other tools like [Travis](https://travis-ci.org/) (with a generous free plan for open-source projects), [Jenkins](https://jenkins.io/)...
 
 ## Use static code analyzers in your IDE
 <span class="label label-warning pull-right">Intermediate</span>

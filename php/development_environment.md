@@ -21,7 +21,7 @@ error_reporting = E_ALL
 display_errors = On
 ```
 
-Also, please install [Xdebug](http://xdebug.org/).
+Also, please install [Xdebug](https://xdebug.org/).
 
 ### Explanation
 
@@ -50,7 +50,7 @@ You absolutely need these 2 features to be efficient:
 
 Looking for such an IDE? At the time of writing, here are 3 IDEs that stand out:
   
-- [Eclipse](http://eclipse.org/), with PDT plugin
+- [Eclipse](https://eclipse.org/), with PDT plugin
 - [Netbeans](https://netbeans.org/)
 - [PHPStorm](https://www.jetbrains.com/phpstorm/), probably the best PHP IDE out there, but unlike Eclipse and NetBeans,
   it is not free.

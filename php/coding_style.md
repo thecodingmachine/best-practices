@@ -9,7 +9,7 @@ currentMenu: php-coding-style
 ###Rule
 
 <div class="alert alert-info">PHP now has a coding style guide shared by many projects. Its name is 
-<a href="http://www.php-fig.org/psr/psr-2/">PSR-2</a>. You should follow it.</div>
+<a href="https://www.php-fig.org/psr/psr-2/">PSR-2</a>. You should follow it.</div>
 
 ###Explanation
 
@@ -20,7 +20,7 @@ It means that if you follow it, your code will follow the same standard as the v
 Oh... one very important thing! **Do not spend any time learning PSR-2**. This is useless! Instead, use a code
 formatting tool that will do the work for you!
 
-<div class="alert alert-info">Use <a href="http://cs.sensiolabs.org/">PHP-CS-Fixer.</a> or <a href="https://github.com/squizlabs/PHP_CodeSniffer">PHP Code Sniffer</a>. 
+<div class="alert alert-info">Use <a href="https://cs.symfony.com/">PHP-CS-Fixer.</a> or <a href="https://github.com/squizlabs/PHP_CodeSniffer">PHP Code Sniffer</a>. 
 Both tools will do all the work for you. Run PHP-CS-Fixer or Code Sniffer <strong>before any commit you plan to do</strong>.</div>
 
 Note: Some IDEs like PHPStorm already have a CS-Fixer implemented.

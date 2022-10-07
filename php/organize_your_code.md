@@ -15,9 +15,8 @@ currentMenu: php-organize
 Depending on the project we work on, we use different set of tools. One thing is sure however: we always use a 
 framework that provides a descent **router**.
 
-There are many frameworks out there, ranging from the gigantic Symfony 2 or Zend Framework 2 to the very small
-Slim 3 or Silex micro-routers. At TheCodingMachine we even have our very own [Mouf](http://mouf-php.com), 
-a framework based on dependency injection with a web-based UI.
+There are many frameworks out there, ranging from the gigantic Symfony 6 or Zend Framework 2 to the very small
+Slim 3 or Silex micro-routers.
 
 In order to have a code that does not look like a spaghetti plate, you will want to organize your code using 
 controllers / services and a data layer.
@@ -165,7 +164,7 @@ Instead, use the request object of your framework.</div>
 ###Explanation
 
 Each MVC framework comes with a **request** object. Modern frameworks should [share a common
- request object as it has been defined in PSR-7 compatible one](http://www.php-fig.org/psr/psr-7/).
+ request object as it has been defined in PSR-7 compatible one](https://www.php-fig.org/psr/psr-7/).
 This request object can be used to access GET and POST parameters.
 
 You should use it instead of accessing `$_GET`, `$_POST` or `$_REQUEST` directly.
