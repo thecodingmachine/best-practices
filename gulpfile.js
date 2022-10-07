@@ -31,7 +31,6 @@ var
     rimraf       = require('gulp-rimraf'),
     concat       = require('gulp-concat'),
     notify       = require('gulp-notify'),
-    cache        = require('gulp-cache'),
     livereload   = require('gulp-livereload');
 
 var config = {
