@@ -54,3 +54,8 @@ menu:
         php-libraries-doctrine:
             text: Doctrine
             relativeUrl: php/libraries/doctrine.html
+        Git:
+            text: Git
+        git-workflow:
+            text: Git Workflow
+            relativeUrl: git/workflow.html
