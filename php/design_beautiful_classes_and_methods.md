@@ -219,7 +219,7 @@ Please do not write those yourself. Your IDE should be able to write getters and
 (and if it cannot, consider changing your IDE).</div>
 
 - PHPStorm supports generating getters and setters out of the box.
-- Eclipse PDT has [extensions allowing generating getters and setters too](http://p2-dev.pdt-extensions.org/phpfeatures.html)
+- Eclipse PDT has [extensions allowing generating getters and setters too](https://p2-dev.pdt-extensions.org/phpfeatures.html)
 - ...
 
 ##Avoid option arrays in constructors
@@ -365,8 +365,7 @@ If you are coding with a legacy PHP 5.x application, please also provide <code>@
 Many tools can read the PHPDoc and help you with it.
 
 - Your IDE can read it and provide auto-completion based on it
-- [Mouf](http://mouf-php.com) offers a drag'n'drop interface for instances based on PHPDoc
-- [Scrutinizer](http://scrutinizer-ci.com/) performs a number of type checks based on PHPDoc
+- [Scrutinizer](https://scrutinizer-ci.com/) performs a number of type checks based on PHPDoc
 
 <div class="alert alert-success">You should be sure to use the <code>Object[]</code> notation in addition to an <code>array</code> type-hint to explain what kind of object is expected.</div>
 

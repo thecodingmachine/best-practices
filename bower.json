@@ -4,7 +4,7 @@
   "authors": [
     "David Négrier <d.negrier@thecodingmachine.com>"
   ],
-  "homepage": "http://bestpractices.thecodingmachine.com",
+  "homepage": "https://bestpractices.thecodingmachine.com",
   "ignore": [
     "**/.*",
     "node_modules",

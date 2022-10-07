@@ -105,4 +105,4 @@ With the above code, the developper will not have to take care about the name of
 be more efficient and will not have to care about creepy things.
 
 <div class="alert alert-info">Note: Doctrine provides different naming strategies and let you the possibility to implements 
-your own ones, see <a href="http://doctrine-orm.readthedocs.org/projects/doctrine-orm/en/latest/reference/namingstrategy.html">Doctrine Naming strategies</a></div>
+your own ones, see <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/namingstrategy.html">Doctrine Naming strategies</a></div>

@@ -41,8 +41,5 @@ Why? Because:
     
 Here are a few console components out there:
 
-- [Symfony console component](http://symfony.com/doc/current/components/console/introduction.html)
-- [Laravel Artisan](http://laravel.com/docs/artisan)
-
-At TheCodingMachine, we use [Mouf's console](http://mouf-php.com/packages/mouf/utils.console/) which
-is essentially a wrapper around the very nice Symfony console that enables using dependency injection into commands.
+- [Symfony console component](https://symfony.com/doc/current/components/console/introduction.html)
+- [Laravel Artisan](https://laravel.com/docs/artisan)
